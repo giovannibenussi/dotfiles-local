@@ -1,0 +1,38 @@
+runtime macros/matchit.vim
+map <C-n> :NERDTreeToggle<CR>
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec}')"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+nnoremap <leader>ap :VtrAttachToPane<cr>
+
+nnoremap <leader>fr :VtrFocusRunner<cr>
+nnoremap <leader>m :VtrSendCommandToRunner<cr>
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
+let g:winresizer_start_key = '<Leader>e'
+let g:winresizer_vert_resize = 2
+let g:winresizer_horiz_resize = 2
+
+noremap <Leader>w :update<CR>
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
