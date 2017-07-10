@@ -1,10 +1,10 @@
 runtime macros/matchit.vim
-map <C-n> :NERDTreeToggle<CR>
+map <C-m> :NERDTreeToggle<CR>
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
-let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec}')"
+let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec} --format progress')"
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
@@ -36,3 +36,9 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+let g:NERDSpaceDelims = 1
