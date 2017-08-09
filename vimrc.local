@@ -42,3 +42,7 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 let g:NERDSpaceDelims = 1
+
+colorscheme vim-material
+
+nnoremap <C-t>     :tabnew<CR>
