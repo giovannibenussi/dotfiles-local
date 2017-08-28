@@ -31,6 +31,7 @@ let g:winresizer_vert_resize = 2
 let g:winresizer_horiz_resize = 2
 
 noremap <Leader>w :update<CR>
+noremap <Leader>q :quit<CR>
 
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -46,3 +47,5 @@ let g:NERDSpaceDelims = 1
 colorscheme vim-material
 
 nnoremap <C-t>     :tabnew<CR>
+syntax on
+color dracula
