@@ -10,9 +10,16 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 nnoremap <leader>ap :VtrAttachToPane<cr>
+" nnoremap <leader>c :VtrSendKeysRaw ^C<cr>
+nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
+nnoremap <C-a> :VtrSendKeysRaw ^D<cr>
 
 nnoremap <leader>fr :VtrFocusRunner<cr>
 nnoremap <leader>m :VtrSendCommandToRunner<cr>
+let g:VtrUseVtrMaps = 1
+
+nnoremap <leader>rm :VtrSendCommandToRunner bundle exec rails db:migrate<cr>
+nnoremap <leader>ro :VtrSendCommandToRunner bundle exec rails db:rollback<cr>
 
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
@@ -33,10 +40,10 @@ let g:winresizer_horiz_resize = 2
 noremap <Leader>w :update<CR>
 noremap <Leader>q :quit<CR>
 
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
 
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -48,4 +55,20 @@ colorscheme vim-material
 
 nnoremap <C-t>     :tabnew<CR>
 syntax on
-color dracula
+"color dracula
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+noremap <Leader>y :ALELint<CR>
+
+" Repeat last command in the next tmux pane.
+" https://ricostacruz.com/til/repeat-tmux-from-vim
+nnoremap <Leader>p :call <SID>TmuxRepeat()<CR>
+
+function! s:TmuxRepeat()
+  silent! exec "!tmux select-pane -l && tmux send up enter && tmux select-pane -l"
+  redraw!
+endfunction
+
+set relativenumber
