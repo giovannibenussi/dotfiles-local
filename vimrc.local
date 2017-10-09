@@ -4,18 +4,23 @@ map <C-m> :NERDTreeToggle<CR>
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
-let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec} --format progress')"
+let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec} --format progress')"
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-nnoremap <leader>ap :VtrAttachToPane<cr>
+nnoremap <leader>zp :VtrAttachToPane<cr>
 " nnoremap <leader>c :VtrSendKeysRaw ^C<cr>
 nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
-nnoremap <C-a> :VtrSendKeysRaw ^D<cr>
+nnoremap <leader>d :VtrSendKeysRaw ^C<cr>
+nnoremap <leader>vap :VtrAttachToPane<cr>
+" nnoremap <C-a> :VtrSendKeysRaw ^D<cr>
+nnoremap <leader>ntf :NERDTreeFind<cr>
 
 nnoremap <leader>fr :VtrFocusRunner<cr>
+nnoremap <leader>sf :VtrSendFile<cr>
 nnoremap <leader>m :VtrSendCommandToRunner<cr>
+nnoremap <leader>eam :VtrSendCommandToRunner docker exec -it ad-machine su app<cr> <bar> :VtrFlushCommand()<cr>
 let g:VtrUseVtrMaps = 1
 
 nnoremap <leader>rm :VtrSendCommandToRunner bundle exec rails db:migrate<cr>
@@ -72,3 +77,38 @@ function! s:TmuxRepeat()
 endfunction
 
 set relativenumber
+
+
+
+" set background=dark
+" set termguicolors
+" colorscheme quantum
+" 
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+set termguicolors
+endif
+
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Theme
+syntax enable
+colorscheme tender
+" 
+" " set lighline theme inside lightline config
+" let g:lightline = { 'colorscheme': 'tender' }
+" 
+" " set airline theme
+" let g:airline_theme = 'tender'
+
+
+" sonph/onehalf theme
+" colorscheme onehalfdark
+" let g:airline_theme='onehalfdark'
+" let g:lightline = { 'colorscheme': 'onehalfdark' }
+
+let g:vtr_filetype_runner_overrides = { 'gnuplot': 'gnuplot {file}' }
+
+nnoremap <Leader>its :call I18nTranslateString()<CR>
+nnoremap <Leader>idt :call I18nDisplayTranslation()<CR>

@@ -1,8 +1,9 @@
-"Plug 'dracula/vim'
-"Plug 'ecomba/vim-ruby-refactoring'
 "Plug 'jiangmiao/auto-pairs'
 "Plug 'kien/rainbow_parentheses.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'adelarsq/vim-matchit'
 Plug 'christoomey/vim-sort-motion'
+Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner', { 'branch': 'cjt-add-send-raw-command' }
 Plug 'easymotion/vim-easymotion'
@@ -11,22 +12,39 @@ Plug 'gcmt/taboo.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'honza/vim-snippets'
 Plug 'hzchirs/vim-material'
+Plug 'itchyny/lightline.vim'
+Plug 'jceb/vim-orgmode'
 Plug 'kana/vim-textobj-user'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'simeji/winresizer'
+Plug 'stefanoverna/vim-i18n'
 Plug 'szw/vim-tags'
 Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/gnuplot.vim'
 Plug 'wakatime/vim-wakatime'
 Plug 'wesQ3/vim-windowswap'
+Plug 'yuttie/hydrangea-vim'
+
+" The tabular plugin must come before vim-markdown.
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 "Themes
-Plug 'nightsense/carbonized'
+
+"Plug 'dracula/vim'
 Plug 'baines/vim-colorscheme-thaumaturge'
+Plug 'jacoborus/tender.vim'
+Plug 'nightsense/carbonized'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'tyrannicaltoucan/vim-quantum'
 
 UnPlug 'w0rp/ale'
 
