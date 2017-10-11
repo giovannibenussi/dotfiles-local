@@ -56,8 +56,6 @@ map g/ <Plug>(incsearch-stay)
 
 let g:NERDSpaceDelims = 1
 
-colorscheme vim-material
-
 nnoremap <C-t>     :tabnew<CR>
 syntax on
 "color dracula
@@ -78,8 +76,6 @@ endfunction
 
 set relativenumber
 
-
-
 " set background=dark
 " set termguicolors
 " colorscheme quantum
@@ -93,8 +89,8 @@ endif
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Theme
-syntax enable
-colorscheme tender
+" syntax enable
+" colorscheme tender
 " 
 " " set lighline theme inside lightline config
 " let g:lightline = { 'colorscheme': 'tender' }
@@ -107,6 +103,9 @@ colorscheme tender
 " colorscheme onehalfdark
 " let g:airline_theme='onehalfdark'
 " let g:lightline = { 'colorscheme': 'onehalfdark' }
+
+colorscheme vim-material
+let g:airline_theme='material'
 
 let g:vtr_filetype_runner_overrides = { 'gnuplot': 'gnuplot {file}' }
 

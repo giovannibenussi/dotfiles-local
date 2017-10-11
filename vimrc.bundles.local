@@ -31,6 +31,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/gnuplot.vim'
 Plug 'wakatime/vim-wakatime'
 Plug 'wesQ3/vim-windowswap'
+Plug 'wgurecky/vimSum'
 Plug 'yuttie/hydrangea-vim'
 
 " The tabular plugin must come before vim-markdown.
@@ -44,6 +45,7 @@ Plug 'baines/vim-colorscheme-thaumaturge'
 Plug 'jacoborus/tender.vim'
 Plug 'nightsense/carbonized'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'tyrannicaltoucan/vim-quantum'
 
 UnPlug 'w0rp/ale'
