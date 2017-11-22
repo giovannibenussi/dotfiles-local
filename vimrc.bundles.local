@@ -43,6 +43,7 @@ Plug 'plasticboy/vim-markdown'
 "Plug 'dracula/vim'
 Plug 'baines/vim-colorscheme-thaumaturge'
 Plug 'jacoborus/tender.vim'
+Plug 'jdkanani/vim-material-theme'
 Plug 'nightsense/carbonized'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'tyrannicaltoucan/vim-quantum'

@@ -9,6 +9,10 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>pe $px
+map <Leader>pa $i <Esc>px
+map <Leader>ac A,<Esc>
+map <Leader>rc $x
 nnoremap <leader>zp :VtrAttachToPane<cr>
 " nnoremap <leader>c :VtrSendKeysRaw ^C<cr>
 nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
@@ -107,7 +111,22 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 colorscheme vim-material
 let g:airline_theme='material'
 
+" syntax enable
+" set background=dark
+" colorscheme material-theme
+
 let g:vtr_filetype_runner_overrides = { 'gnuplot': 'gnuplot {file}' }
 
 nnoremap <Leader>its :call I18nTranslateString()<CR>
 nnoremap <Leader>idt :call I18nDisplayTranslation()<CR>
+
+" Don't autosplit lines
+set formatoptions-=tc
+map <Leader>pr obinding.pry<Esc>
+map <Leader>cpr ccbinding.pry<Esc>
+map <Leader><Leader>- :sp<Esc>
+map <Leader><Leader>\ :vsp<Esc>
+:nnoremap <silent> <C-n> :set relativenumber!<cr>
+
+nnoremap <Leader><Leader>m :set norelativenumber <bar> set nonumber<cr>
+nnoremap <Leader><Leader>n :set relativenumber <bar> set number<cr>
