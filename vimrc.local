@@ -1,4 +1,10 @@
 runtime macros/matchit.vim
+set wildignore+=summaries_servidor_new/*
+set wildignore+=summaries_servidor_backup/*
+set wildignore+=summaries_servidor/*
+set wildignore+=cache_servidor/*
+set wildignore+=cache_servidor_new/*
+set wildignore+=cache_servidor_backup/*
 map <C-m> :NERDTreeToggle<CR>
 
 " automatically rebalance windows on vim resize
@@ -130,3 +136,14 @@ map <Leader><Leader>\ :vsp<Esc>
 
 nnoremap <Leader><Leader>m :set norelativenumber <bar> set nonumber<cr>
 nnoremap <Leader><Leader>n :set relativenumber <bar> set number<cr>
+
+" Chiel92/vim-autoformat
+nnoremap <Leader><Leader>f :Autoformat<cr>
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+let g:languagetool_jar="$HOME/dotfiles-local/LanguageTool-4.0/languagetool-commandline.jar"
+let g:languagetool_lang='es'
+nnoremap <Leader><Leader>h :LanguageToolCheck<cr>
+nnoremap <Leader><Leader>j :LanguageToolCheck<cr>
