@@ -1,4 +1,11 @@
 runtime macros/matchit.vim
+
+let g:ragtag_global_maps = 1
+
+nmap <silent> <C-f> :Ag "<cword>" <CR>
+
+set stl+=%{ConflictedVersion()}
+
 set wildignore+=summaries_servidor_new/*
 set wildignore+=summaries_servidor_backup/*
 set wildignore+=summaries_servidor/*
@@ -6,6 +13,7 @@ set wildignore+=cache_servidor/*
 set wildignore+=cache_servidor_new/*
 set wildignore+=cache_servidor_backup/*
 map <C-m> :NERDTreeToggle<CR>
+" let g:NERDTreeWinPos = "right"
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
@@ -68,11 +76,11 @@ let g:NERDSpaceDelims = 1
 
 nnoremap <C-t>     :tabnew<CR>
 syntax on
-"color dracula
+" color dracula
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 0
+let g:ale_lint_on_save = 1
 noremap <Leader>y :ALELint<CR>
 
 " Repeat last command in the next tmux pane.
@@ -101,6 +109,10 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 " syntax enable
 " colorscheme tender
+
+" syntax on
+" colorscheme onedark
+
 " 
 " " set lighline theme inside lightline config
 " let g:lightline = { 'colorscheme': 'tender' }
@@ -110,12 +122,17 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 
 " sonph/onehalf theme
-" colorscheme onehalfdark
-" let g:airline_theme='onehalfdark'
-" let g:lightline = { 'colorscheme': 'onehalfdark' }
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+set background=dark
+let g:lightline = { 'colorscheme': 'onehalfdark' }
 
-colorscheme vim-material
-let g:airline_theme='material'
+" colorscheme vim-material
+" let g:airline_theme='material'
+" set background=light
+" colorscheme material-theme
+" colorscheme okaidia
+" let g:airline_theme='material'
 
 " syntax enable
 " set background=dark
@@ -147,3 +164,35 @@ let g:languagetool_jar="$HOME/dotfiles-local/LanguageTool-4.0/languagetool-comma
 let g:languagetool_lang='es'
 nnoremap <Leader><Leader>h :LanguageToolCheck<cr>
 nnoremap <Leader><Leader>j :LanguageToolCheck<cr>
+let g:spring_is_active = 1
+let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec} --format progress')"
+function! ToggleRSpecCommand()
+  if g:spring_is_active
+    let g:spring_is_active = 0
+    let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec} --format progress')"
+  else
+    let g:spring_is_active = 1
+    let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec} --format progress')"
+  endif
+  echo g:spring_is_active
+endfunction
+
+let g:rspec_documentation_format = 0
+let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec} --format progress')"
+function! ToggleRSpecDocumentationFormat()
+  if g:rspec_documentation_format
+    let g:rspec_documentation_format = 0
+  else
+    let g:rspec_documentation_format = 1
+  endif
+  echo g:rspec_documentation_format
+  call ToggleRSpecCommand()
+endfunction
+
+nnoremap <Leader><Leader>s :call ToggleRSpecCommand()<cr>
+nnoremap <Leader><Leader>d :call ToggleRSpecDocumentationFormat()<cr><cr>
+
+" Format json
+nnoremap <Leader><Leader>j :%! ruby -rjson -e "print JSON.pretty_generate(JSON.parse(ARGF.read))"<cr>
+set foldlevel=99
+let g:EclimCompletionMethod = 'omnifunc'
