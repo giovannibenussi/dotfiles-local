@@ -77,17 +77,24 @@ let g:NERDSpaceDelims = 1
 nnoremap <C-t>     :tabnew<CR>
 syntax on
 " color dracula
-
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
+kj
 let g:ale_lint_on_save = 1
 " let b:ale_fixers = {'ruby': ['rubocop']}
 " let b:ale_fixers = ['rubocop']
+let g:ale_linters = {
+\   'ruby': ['rubocop'],
+\   'javascript': ['eslint']
+\}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'ruby': ['rubocop'],
+\   'javascript': ['eslint']
 \}
 noremap <Leader>y :ALELint<CR>
+noremap <Leader><Leader>f :ALEFix<CR>
+noremap <Leader>n<Leader> :ALENext<CR>
 
 " Repeat last command in the next tmux pane.
 " https://ricostacruz.com/til/repeat-tmux-from-vim
@@ -136,9 +143,9 @@ let g:lightline = { 'colorscheme': 'onehalfdark' }
 " colorscheme vim-material
 " let g:airline_theme='material'
 " set background=light
-" colorscheme material-theme
+colorscheme material-theme
 " colorscheme okaidia
-" let g:airline_theme='material'
+let g:airline_theme='material'
 
 " syntax enable
 " set background=dark
@@ -161,13 +168,11 @@ nnoremap <Leader><Leader>m :set norelativenumber <bar> set nonumber<cr>
 nnoremap <Leader><Leader>n :set relativenumber <bar> set number<cr>
 
 " Chiel92/vim-autoformat
-nnoremap <Leader><Leader>f :Autoformat<cr>
+nnoremap <Leader><Leader>g :Autoformat<cr>
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 
-let g:languagetool_jar="$HOME/dotfiles-local/LanguageTool-4.0/languagetool-commandline.jar"
-let g:languagetool_lang='es'
 nnoremap <Leader><Leader>h :LanguageToolCheck<cr>
 nnoremap <Leader><Leader>j :LanguageToolCheck<cr>
 let g:spring_is_active = 1
@@ -210,8 +215,11 @@ set hidden
 " \l       : list buffers
 " \b \f \g : go back/forward/last-used
 " \1 \2 \3 : go to buffer 1/2/3 etc
-nnoremap <Leader>l :ls<CR>
+" nnoremap <Leader>j :ls<CR>
+nnoremap <Leader>j :buffers<CR>:buffer<Space>
 nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>s<Leader> :b#<CR>
+nnoremap <Leader><Leader>d :bd<CR>
 nnoremap <Leader>f :bn<CR>
 nnoremap <Leader>g :e#<CR>
 nnoremap <Leader>1 :1b<CR>
@@ -226,3 +234,11 @@ nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 " It's useful to show the buffer number in the status line.
 set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+function! CrmAssistantConsole()
+    set syntax=ruby
+    " ~/vim/cpp/new-class.txt is the path to the template file
+    r~/dotfiles-local/snippets/ruby/crm_assistant_console.rb
+endfunction
+set langmenu=en_US.UTF-8
+language en_US

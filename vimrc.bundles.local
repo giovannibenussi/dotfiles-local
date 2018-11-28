@@ -12,7 +12,6 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner', { 'branch': 'cjt-add-send-raw-command' }
-Plug 'dpelle/vim-LanguageTool'
 Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'garbas/vim-snipmate'

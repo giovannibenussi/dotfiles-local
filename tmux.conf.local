@@ -313,3 +313,6 @@ set-option -g default-command "reattach-to-user-namespace -l zsh"
 set -g prefix2 C-s
 
 if-shell 'test -n "$SSH_CLIENT"' 'source-file ~/.tmux/tmux.remote.conf'
+bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+bind-key K run-shell 'tmux switch-client -n \; kill-session -t "$(tmux display-message -p "#S")" || tmux kill-session'
+bind-key j command-prompt -p "join pane from: "  "join-pane -h -s '%%'"
