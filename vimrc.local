@@ -242,3 +242,4 @@ function! CrmAssistantConsole()
 endfunction
 set langmenu=en_US.UTF-8
 language en_US
+let g:UltiSnipsExpandTrigger="<c-l>"
