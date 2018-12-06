@@ -85,12 +85,16 @@ let g:ale_lint_on_save = 1
 " let b:ale_fixers = ['rubocop']
 let g:ale_linters = {
 \   'ruby': ['rubocop'],
-\   'javascript': ['eslint']
+\   'javascript': ['eslint'],
+\   'jsx': ['eslint'],
+\   'javascript.jsx': ['eslint']
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'ruby': ['rubocop'],
-\   'javascript': ['eslint']
+\   'javascript': ['eslint'],
+\   'jsx': ['eslint'],
+\   'javascript.jsx': ['eslint']
 \}
 noremap <Leader>y :ALELint<CR>
 noremap <Leader><Leader>f :ALEFix<CR>
@@ -248,3 +252,10 @@ let g:UltiSnipsJumpForwardTrigger="<c-m>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 nnoremap <leader>a<leader> :A<cr>
 nnoremap <leader>e<leader> :Ecomponent 
+
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends': 'jsx',
+\      'quote_char': "'",
+\  },
+\}
