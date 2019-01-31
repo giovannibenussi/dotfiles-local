@@ -79,23 +79,24 @@ syntax on
 " color dracula
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-kj
+
 let g:ale_lint_on_save = 1
 " let b:ale_fixers = {'ruby': ['rubocop']}
 " let b:ale_fixers = ['rubocop']
 let g:ale_linters = {
-\   'ruby': ['rubocop'],
-\   'javascript': ['eslint'],
+\   'ruby': ['rubocop', 'reek'],
+\   'javascript': ['eslint', 'standard'],
 \   'jsx': ['eslint'],
 \   'javascript.jsx': ['eslint']
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'ruby': ['rubocop'],
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'standard'],
 \   'jsx': ['eslint'],
 \   'javascript.jsx': ['eslint']
 \}
+let g:ale_ruby_reek_options = 'reek -c .reek.yml'
 noremap <Leader>y :ALELint<CR>
 noremap <Leader><Leader>f :ALEFix<CR>
 noremap <Leader>n<Leader> :ALENext<CR>
@@ -147,7 +148,7 @@ let g:lightline = { 'colorscheme': 'onehalfdark' }
 " colorscheme vim-material
 " let g:airline_theme='material'
 " set background=light
-colorscheme material-theme
+colorscheme materialtheme
 " colorscheme okaidia
 let g:airline_theme='material'
 
@@ -168,8 +169,8 @@ map <Leader><Leader>- :sp<Esc>
 map <Leader><Leader>\ :vsp<Esc>
 :nnoremap <silent> <C-n> :set relativenumber!<cr>
 
-nnoremap <Leader><Leader>m :set norelativenumber <bar> set nonumber<cr>
-nnoremap <Leader><Leader>n :set relativenumber <bar> set number<cr>
+" nnoremap <Leader><Leader>m :set norelativenumber <bar> set nonumber<cr>
+" nnoremap <Leader><Leader>n :set relativenumber <bar> set number<cr>
 
 " Chiel92/vim-autoformat
 nnoremap <Leader><Leader>g :Autoformat<cr>
@@ -180,7 +181,7 @@ let g:autoformat_remove_trailing_spaces = 0
 nnoremap <Leader><Leader>h :LanguageToolCheck<cr>
 nnoremap <Leader><Leader>j :LanguageToolCheck<cr>
 let g:spring_is_active = 1
-let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec} --format progress')"
+let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec} --format progress')"
 function! ToggleRSpecCommand()
   if g:spring_is_active
     let g:spring_is_active = 0
@@ -252,6 +253,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-m>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 nnoremap <leader>a<leader> :A<cr>
 nnoremap <leader>e<leader> :Ecomponent 
+nnoremap <Leader>f<Leader> :Emodel 
+nnoremap <Leader>t<Leader> :Espec 
 
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
@@ -259,3 +262,24 @@ let g:user_emmet_settings = {
 \      'quote_char': "'",
 \  },
 \}
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gd :Gdiff<cr>
+
+" From https://drivy.engineering/setting-up-vim-for-react/
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
+nnoremap <leader><leader>rh :highlight clear ALEWarning<cr>
+" Colors: https://github.com/sunaku/vim-hicterm/issues/1
+nnoremap <leader><leader>ah :highlight ALEWarning ctermbg=DarkGray<cr>
+highlight ALEWarning ctermbg=DarkGray
+
+nnoremap <leader><leader>p :CtrlPBuffer<cr>
+nnoremap <leader>rgm :VtrSendCommandToRunner bundle exec spring rails g migration 
+nnoremap <leader>rmd :VtrSendCommand bundle exec spring rails db:migrate<cr>
+nnoremap <leader>rmt :VtrSendCommandToRunner RAILS_ENV=test bundle exec spring rails db:migrate<cr>
+nnoremap <leader>rc :VtrSendCommandToRunner bundle exec spring rails c<cr>
