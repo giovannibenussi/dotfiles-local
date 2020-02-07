@@ -1,261 +1,69 @@
-runtime macros/matchit.vim
+let g:ale_fix_on_save = 0
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'javascript.jsx': ['eslint']
+\}
 
-let g:ragtag_global_maps = 1
+" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'javascript.jsx': ['eslint'],
+\   'ruby': ['rubocop'],
+\}
 
-nmap <silent> <C-f> :Ag "<cword>" <CR>
+noremap <Leader><Leader>f :ALEFix<CR>
+noremap <Leader><Leader>n :ALENext<CR>
+noremap <Leader><Leader>m :ALEPrevious<CR>
 
-set stl+=%{ConflictedVersion()}
+noremap <Leader>w :update<CR>
+noremap <Leader>q :quit<CR>
 
-set wildignore+=summaries_servidor_new/*
-set wildignore+=summaries_servidor_backup/*
-set wildignore+=summaries_servidor/*
-set wildignore+=cache_servidor/*
-set wildignore+=cache_servidor_new/*
-set wildignore+=cache_servidor_backup/*
-map <C-m> :NERDTreeToggle<CR>
-" let g:NERDTreeWinPos = "right"
+set tags^=./.git/tags;
+colorscheme night-owl
 
-" automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd =
-
-let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec} --format progress')"
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-map <Leader>pe $px
-map <Leader>pa $i <Esc>px
-map <Leader>ac A,<Esc>
-map <Leader>rc $x
-nnoremap <leader>zp :VtrAttachToPane<cr>
-" nnoremap <leader>c :VtrSendKeysRaw ^C<cr>
-nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
-nnoremap <leader>d :VtrSendKeysRaw ^C<cr>
-nnoremap <leader>vap :VtrAttachToPane<cr>
-" nnoremap <C-a> :VtrSendKeysRaw ^D<cr>
-nnoremap <leader>ntf :NERDTreeFind<cr>
-
-nnoremap <leader>fr :VtrFocusRunner<cr>
-nnoremap <leader>sf :VtrSendFile<cr>
-nnoremap <leader>m :VtrSendCommandToRunner<cr>
-nnoremap <leader>eam :VtrSendCommandToRunner docker exec -it ad-machine su app<cr> <bar> :VtrFlushCommand()<cr>
-let g:VtrUseVtrMaps = 1
-
-nnoremap <leader>rm :VtrSendCommandToRunner bundle exec rails db:migrate<cr>
-nnoremap <leader>ro :VtrSendCommandToRunner bundle exec rails db:rollback<cr>
-
-" zoom a vim pane, <C-w>= to re-balance
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :wincmd =<cr>
-
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-set splitbelow
-set splitright
+" Split panes shortcuts
+map <Leader><Leader>- :sp<Esc>
+map <Leader><Leader>\ :vsp<Esc>
 
 let g:winresizer_start_key = '<Leader>e'
 let g:winresizer_vert_resize = 2
 let g:winresizer_horiz_resize = 2
 
-noremap <Leader>w :update<CR>
-noremap <Leader>q :quit<CR>
-
-"au VimEnter * RainbowParenthesesToggle
-"au Syntax * RainbowParenthesesLoadRound
-"au Syntax * RainbowParenthesesLoadSquare
-"au Syntax * RainbowParenthesesLoadBraces
-
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
-let g:NERDSpaceDelims = 1
-
-nnoremap <C-t>     :tabnew<CR>
-syntax on
-" color dracula
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-
-let g:ale_lint_on_save = 1
-" let b:ale_fixers = {'ruby': ['rubocop']}
-" let b:ale_fixers = ['rubocop']
-let g:ale_linters = {
-\   'ruby': ['rubocop', 'reek'],
-\   'javascript': ['eslint', 'standard'],
-\   'jsx': ['eslint'],
-\   'javascript.jsx': ['eslint']
-\}
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'ruby': ['rubocop'],
-\   'javascript': ['eslint', 'standard'],
-\   'jsx': ['eslint'],
-\   'javascript.jsx': ['eslint']
-\}
-let g:ale_ruby_reek_options = 'reek -c .reek.yml'
-noremap <Leader>y :ALELint<CR>
-noremap <Leader><Leader>f :ALEFix<CR>
-noremap <Leader>n<Leader> :ALENext<CR>
-
-" Repeat last command in the next tmux pane.
-" https://ricostacruz.com/til/repeat-tmux-from-vim
-nnoremap <Leader>p :call <SID>TmuxRepeat()<CR>
-
-function! s:TmuxRepeat()
-  silent! exec "!tmux select-pane -l && tmux send up enter && tmux select-pane -l"
-  redraw!
-endfunction
-
-set relativenumber
-
-" set background=dark
-" set termguicolors
-" colorscheme quantum
-" 
-" If you have vim >=8.0 or Neovim >= 0.1.5
-if (has("termguicolors"))
-set termguicolors
-endif
-
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-" Theme
-" syntax enable
-" colorscheme tender
-
-" syntax on
-" colorscheme onedark
-
-" 
-" " set lighline theme inside lightline config
-" let g:lightline = { 'colorscheme': 'tender' }
-" 
-" " set airline theme
-" let g:airline_theme = 'tender'
-
-
-" sonph/onehalf theme
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
-set background=dark
-let g:lightline = { 'colorscheme': 'onehalfdark' }
-
-" colorscheme vim-material
-" let g:airline_theme='material'
-" set background=light
-colorscheme materialtheme
-" colorscheme okaidia
-let g:airline_theme='material'
-
-" syntax enable
-" set background=dark
-" colorscheme material-theme
-
-let g:vtr_filetype_runner_overrides = { 'gnuplot': 'gnuplot {file}' }
-
-nnoremap <Leader>its :call I18nTranslateString()<CR>
-nnoremap <Leader>idt :call I18nDisplayTranslation()<CR>
-
-" Don't autosplit lines
-set formatoptions-=tc
-map <Leader>pr obinding.pry<Esc>
-map <Leader>cpr ccbinding.pry<Esc>
-map <Leader><Leader>- :sp<Esc>
-map <Leader><Leader>\ :vsp<Esc>
-:nnoremap <silent> <C-n> :set relativenumber!<cr>
-
-" nnoremap <Leader><Leader>m :set norelativenumber <bar> set nonumber<cr>
-" nnoremap <Leader><Leader>n :set relativenumber <bar> set number<cr>
-
-" Chiel92/vim-autoformat
-nnoremap <Leader><Leader>g :Autoformat<cr>
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-
-nnoremap <Leader><Leader>h :LanguageToolCheck<cr>
-nnoremap <Leader><Leader>j :LanguageToolCheck<cr>
-let g:spring_is_active = 1
-let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec} --format progress')"
-function! ToggleRSpecCommand()
-  if g:spring_is_active
-    let g:spring_is_active = 0
-    let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec} --format progress')"
-  else
-    let g:spring_is_active = 1
-    let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec} --format progress')"
-  endif
-  echo g:spring_is_active
-endfunction
-
-let g:rspec_documentation_format = 0
-let g:rspec_command = "call VtrSendCommand('bundle exec rspec {spec} --format progress')"
-function! ToggleRSpecDocumentationFormat()
-  if g:rspec_documentation_format
-    let g:rspec_documentation_format = 0
-  else
-    let g:rspec_documentation_format = 1
-  endif
-  echo g:rspec_documentation_format
-  call ToggleRSpecCommand()
-endfunction
-
-nnoremap <Leader><Leader>s :call ToggleRSpecCommand()<cr>
-nnoremap <Leader><Leader>d :call ToggleRSpecDocumentationFormat()<cr><cr>
-
-" Format json
-nnoremap <Leader><Leader>j :%! ruby -rjson -e "print JSON.pretty_generate(JSON.parse(ARGF.read))"<cr>
-set foldlevel=99
-let g:EclimCompletionMethod = 'omnifunc'
-nnoremap <F5> :buffers<CR>:buffer<Space>
-set hidden
-
-" Mappings to access buffers (don't use "\p" because a
-" delay before pressing "p" would accidentally paste).
-" \l       : list buffers
-" \b \f \g : go back/forward/last-used
-" \1 \2 \3 : go to buffer 1/2/3 etc
-" nnoremap <Leader>j :ls<CR>
-nnoremap <Leader>j :buffers<CR>:buffer<Space>
-nnoremap <Leader>b :bp<CR>
-nnoremap <Leader>s<Leader> :b#<CR>
-nnoremap <Leader><Leader>d :bd<CR>
-nnoremap <Leader>f :bn<CR>
-nnoremap <Leader>g :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-" It's useful to show the buffer number in the status line.
-set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-
-function! CrmAssistantConsole()
-    set syntax=ruby
-    " ~/vim/cpp/new-class.txt is the path to the template file
-    r~/dotfiles-local/snippets/ruby/crm_assistant_console.rb
-endfunction
-set langmenu=en_US.UTF-8
-language en_US
+map <C-m> :NERDTreeToggle<CR>
 
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-m>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-nnoremap <leader>a<leader> :A<cr>
-nnoremap <leader>e<leader> :Ecomponent 
-nnoremap <Leader>f<Leader> :Emodel 
-nnoremap <Leader>t<Leader> :Espec 
 
+nnoremap <Leader>s<Leader> :b#<CR>
+nnoremap <Leader><Leader>d :bd<CR>
+
+nnoremap <leader>ntf :NERDTreeFind<cr>
+
+nnoremap <leader>fr :VtrFocusRunner<cr>
+nnoremap <leader>sf :VtrSendFile<cr>
+nnoremap <leader>m :VtrSendCommandToRunner<cr>
+nnoremap <leader>vap :VtrAttachToPane<cr>
+
+nnoremap <C-t>     :tabnew<CR>
+
+nnoremap \ :Ag<SPACE>
+nmap <silent> <C-f> :Ag "<cword>" <CR>
+
+let g:VtrUseVtrMaps = 1
+nnoremap <leader>c :VtrSendCtrlC<cr>
+
+" Align GitHub-flavored Markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+ino <C-A> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
+
+" Allow to switch between buffers without having to save them and don't loose changes
+set hidden
+
+let g:UltiSnipsExpandTrigger="<c-l>"
+
+let g:user_emmet_leader_key='<C-k>'
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
 \      'extends': 'jsx',
@@ -263,23 +71,30 @@ let g:user_emmet_settings = {
 \  },
 \}
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_ruby_rubocop_executable = '/usr/local/bin/rubocop-daemon-wrapper'
 
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gd :Gdiff<cr>
+highlight Pmenu ctermfg=white ctermbg=black
+highlight PmenuSel ctermfg=white ctermbg=darkblue
 
-" From https://drivy.engineering/setting-up-vim-for-react/
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+command! ALEDisableFixers       let g:ale_fix_on_save=0
+command! ALEEnableFixers        let g:ale_fix_on_save=1
+command! ALEDisableFixersBuffer let b:ale_fix_on_save=0
+command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
+command! ALEToggleFixers call functions#fckALEToggle('global')
+command! ALEToggleFixersBuffer call functions#fckALEToggle('buffer')
 
-nnoremap <leader><leader>rh :highlight clear ALEWarning<cr>
-" Colors: https://github.com/sunaku/vim-hicterm/issues/1
-nnoremap <leader><leader>ah :highlight ALEWarning ctermbg=DarkGray<cr>
-highlight ALEWarning ctermbg=DarkGray
+noremap <C-n> :call ReactGotoDef()<CR>
 
-nnoremap <leader><leader>p :CtrlPBuffer<cr>
-nnoremap <leader>rgm :VtrSendCommandToRunner bundle exec spring rails g migration 
-nnoremap <leader>rmd :VtrSendCommand bundle exec spring rails db:migrate<cr>
-nnoremap <leader>rmt :VtrSendCommandToRunner RAILS_ENV=test bundle exec spring rails db:migrate<cr>
-nnoremap <leader>rc :VtrSendCommandToRunner bundle exec spring rails c<cr>
+let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec}')"
+" vim-rspec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
+
+"let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+command! EnablePrettier autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync

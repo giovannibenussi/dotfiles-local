@@ -315,4 +315,13 @@ set -g prefix2 C-s
 if-shell 'test -n "$SSH_CLIENT"' 'source-file ~/.tmux/tmux.remote.conf'
 bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
 bind-key K run-shell 'tmux switch-client -n \; kill-session -t "$(tmux display-message -p "#S")" || tmux kill-session'
-bind-key j command-prompt -p "join pane from: "  "join-pane -h -s '%%'"
+# bind-key j command-prompt -p "join pane from: "  "join-pane -h -s '%%'"
+bind-key e setw synchronize-panes \; display "Synchronized Panes #{?synchronize-panes,ON,OFF}"
+bind-key u setw synchronize-panes on \; display-message "Panes Synchronized"
+bind-key y setw synchronize-panes off \; display-message "Panes Not Synchronized"
+
+bind k send-keys -R
+# bind-key j command-prompt -p "join pane from: "  "join-pane -h -s '%%'"
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
+set -s escape-time 0

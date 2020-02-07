@@ -19,6 +19,126 @@ ${1:name} = (${2:args}) => {
 
 endsnippet
 
+snippet cl "console log" b
+console.log('${1}', $1)
+endsnippet
+
 snippet ccl "console log" b
 console.log('${1}')
+endsnippet
+
+snippet fco "function component" b
+import React from 'react'
+
+function $1 () {
+  return (
+    <div>
+      Hi
+    </div>
+  )
+}
+
+export default $1
+endsnippet
+
+snippet fcos "styled function component" b
+import React from 'react'
+import styled from '@emotion/styled'
+
+const Wrapper = styled.div\`
+\`
+
+function $1 () {
+  return (
+    <Wrapper>
+      Hi
+    </Wrapper>
+  )
+}
+
+export default $1
+endsnippet
+
+snippet use "useState hook" b
+const [${1:state}, `!p snip.rv = 'set' + t[1].capitalize() + "] = useState("`${2:''})
+endsnippet
+
+snippet deco "styled component decorator" b
+.addDecorator(storyFn => <div style={{ textAlign: 'center' }}>{storyFn()}</div>)
+endsnippet
+
+snippet query "Query component generator" b
+
+endsnippet
+
+snippet st "styled component" b
+const ${1:Wrapper} = styled.${2:div}\`
+	${3}
+\`
+endsnippet
+
+snippet fs "font-size" b
+font-size: ${1:1rem};
+endsnippet
+
+snippet fw "font-weight" b
+font-weight: ${1:bold};
+endsnippet
+
+snippet flex "flex" b
+display: flex;
+flex-direction: ${1:row};
+endsnippet
+
+snippet bs "box-sizing" b
+box-sizing: border-box;
+endsnippet
+
+snippet bg "background" b
+background: ${1:red};
+endsnippet
+
+snippet bo "border" b
+border: 1px solid ${1:red};
+endsnippet
+
+snippet br "border-radius" b
+border-radius: ${1:5px};
+endsnippet
+
+snippet bb "border-bottom" b
+border-bottom: ${1:1px} solid ${2:gray};
+endsnippet
+
+snippet mb "margin-bottom" b
+margin-bottom: ${1:0.5rem};
+endsnippet
+
+snippet mt "margin-top" b
+margin-top: ${1:0.5rem};
+endsnippet
+
+snippet ml "margin-left" b
+margin-left: ${1:1rem};
+endsnippet
+
+snippet mr "margin-right" b
+margin-right: ${1:1rem};
+endsnippet
+
+snippet ct "console.table" b
+console.table({ ${1} })
+endsnippet
+
+snippet prop "styled components prop" b
+${props => props.${1}}
+endsnippet
+
+snippet sb "storybook" b
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import $1 from '.'
+
+storiesOf('$1', module)
+  .add('default', () => <$1 />)
 endsnippet
