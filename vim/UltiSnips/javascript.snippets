@@ -60,7 +60,7 @@ export default $1
 endsnippet
 
 snippet use "useState hook" b
-const [${1:state}, `!p snip.rv = 'set' + t[1].capitalize() + "] = useState("`${2:''})
+const [${1:state}, `!p snip.rv = 'set' + (t[1][0].title() if t[1] else '') + (t[1][1:] if t[1] else '') + "] = useState("`${2:''})
 endsnippet
 
 snippet deco "styled component decorator" b
@@ -71,6 +71,11 @@ snippet query "Query component generator" b
 
 endsnippet
 
+snippet wp "styled component" b
+const Wrapper = styled.div\`
+	${1}
+\`
+endsnippet
 snippet st "styled component" b
 const ${1:Wrapper} = styled.${2:div}\`
 	${3}
@@ -87,7 +92,7 @@ endsnippet
 
 snippet flex "flex" b
 display: flex;
-flex-direction: ${1:row};
+flex-direction: row;
 endsnippet
 
 snippet bs "box-sizing" b
@@ -134,6 +139,11 @@ snippet prop "styled components prop" b
 ${props => props.${1}}
 endsnippet
 
+snippet deb "debugger" b
+        // eslint-disable-next-line
+        debugger
+endsnippet
+
 snippet sb "storybook" b
 import React from 'react'
 import { storiesOf } from '@storybook/react'
@@ -141,4 +151,48 @@ import $1 from '.'
 
 storiesOf('$1', module)
   .add('default', () => <$1 />)
+endsnippet
+
+snippet imp "import" b
+import ${1} from './$1'
+endsnippet
+
+snippet icmp "import" b
+const ${1:Component} = () => (
+	<div>
+		Hi
+	</div>
+)
+endsnippet
+
+snippet ofh "onClick" i
+ onClick={() => console.log('onClick')} 
+endsnippet
+
+snippet ofk "onClick" i
+ onClick={${1:onClick}} 
+endsnippet
+
+snippet ona "onClick" i
+ ${1:onClick}={() => ${2:console.log('${3:$1}')}}} 
+endsnippet
+
+snippet onc "onClick" i
+ onChange={(e) => ${1:setValue}(e.target.value)} 
+endsnippet
+
+snippet sp "cp" i
+<$1 />
+endsnippet
+
+snippet stp "cp" i
+${(props) => props.${1:test} ? '' : ''};
+endsnippet
+
+snippet stpp "cp" i
+${1:background}: ${(props) => props.${2:test} || ''};
+endsnippet
+
+snippet sl "cp" i
+const ${1:variable} = ${2:test}
 endsnippet

@@ -1,5 +1,5 @@
-Plug 'Ivo-Donchev/vim-react-goto-definition'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner', { 'branch': 'cjt-add-send-raw-command' }
@@ -22,6 +22,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'wakatime/vim-wakatime'
 Plug 'thoughtbot/vim-rspec'
 Plug 'nishigori/increment-activator'
+Plug 'easymotion/vim-easymotion'
+"Plug 'ludovicchabant/vim-gutentags'
+Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'rakr/vim-one'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Typescript support
 Plug 'leafgarland/typescript-vim'

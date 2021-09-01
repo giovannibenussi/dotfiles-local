@@ -9,7 +9,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'javascript.jsx': ['eslint'],
-\   'ruby': ['rubocop'],
+\ 'ruby': ['rubocop','remove_trailing_lines', 'trim_whitespace' ],
 \}
 
 noremap <Leader><Leader>f :ALEFix<CR>
@@ -20,7 +20,12 @@ noremap <Leader>w :update<CR>
 noremap <Leader>q :quit<CR>
 
 set tags^=./.git/tags;
-colorscheme night-owl
+"colorscheme night-owl
+colorscheme one
+set background=dark
+let g:airline_theme='one'
+highlight SpellCap cterm=underline ctermfg=black ctermbg=yellow
+highlight SpellBad cterm=underline ctermfg=red ctermbg=NONE
 
 " Split panes shortcuts
 map <Leader><Leader>- :sp<Esc>
@@ -30,16 +35,12 @@ let g:winresizer_start_key = '<Leader>e'
 let g:winresizer_vert_resize = 2
 let g:winresizer_horiz_resize = 2
 
-map <C-m> :NERDTreeToggle<CR>
-
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-m>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 
 nnoremap <Leader>s<Leader> :b#<CR>
 nnoremap <Leader><Leader>d :bd<CR>
-
-nnoremap <leader>ntf :NERDTreeFind<cr>
 
 nnoremap <leader>fr :VtrFocusRunner<cr>
 nnoremap <leader>sf :VtrSendFile<cr>
@@ -61,8 +62,6 @@ ino <C-A> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
 " Allow to switch between buffers without having to save them and don't loose changes
 set hidden
 
-let g:UltiSnipsExpandTrigger="<c-l>"
-
 let g:user_emmet_leader_key='<C-k>'
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
@@ -72,7 +71,7 @@ let g:user_emmet_settings = {
 \}
 
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_ruby_rubocop_executable = '/usr/local/bin/rubocop-daemon-wrapper'
+let g:ale_ruby_rubocop_executable = 'rubocop-daemon-wrapper'
 
 highlight Pmenu ctermfg=white ctermbg=black
 highlight PmenuSel ctermfg=white ctermbg=darkblue
@@ -97,4 +96,100 @@ nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
 
 "let g:prettier#autoformat = 0
 "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-command! EnablePrettier autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+command! EnablePrettier autocmd BufRead,BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.javascript.jsx,*.typescript.tsx PrettierAsync
+
+nmap <CR> o<Esc>k
+nmap d<CR> O<Esc>j
+nmap a<CR> kdd
+nmap s<CR> jddk
+
+" https://vim.fandom.com/wiki/Copy_filename_to_clipboard
+" Convert slashes to backslashes for Windows.
+if has('win32')
+  nmap <Leader>fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
+  nmap ,cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+
+  " This will copy the path in 8.3 short format, for DOS and Windows 9x
+  nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
+else
+  nmap <Leader>fn :let @*=expand("%")<CR>
+  nmap ,cl :let @*=expand("%:p")<CR>
+endif
+
+nnoremap <leader>ntf :NERDTreeFind<cr>
+map <C-m> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTree<CR>
+
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+
+" Paste yanked line without line breaks before/after cursor position
+nnoremap gP i<CR><Esc>PkJxJx
+nnoremap gp a<CR><Esc>PkJxJx
+nnoremap <leader>fw i onClick={(e) => console.log('onClick')}<Esc>
+nnoremap <leader>fe i onClick={onClick}<Esc>bb
+nnoremap <leader>y "*y
+nnoremap <leader>yy "*yy
+"nnoremap <leader><leader>f UltiSnipsAddFiletypes tsx.javascript.js
+au BufRead,BufNewFile *.tsx set filetype=javascript.jsx
+
+" Map Colemak keys in alphabetical order.
+"noremap d g
+"noremap e k
+"noremap f e
+"noremap g t
+"noremap i l
+"noremap j y
+"noremap k n
+"noremap l u
+"noremap n j
+"noremap o p
+"noremap p r
+"noremap r s
+"noremap s d
+"noremap t f
+"noremap u i
+"noremap y o
+"noremap D G
+"noremap E K
+"noremap F E
+"noremap G T
+"noremap I L
+"noremap J Y
+"noremap K N
+"noremap L U
+"noremap N J
+"noremap O P
+"noremap P R
+"noremap R S
+"noremap S D
+"noremap T F
+"noremap U I
+"noremap Y O
+
+" <Leader>f{char} to move to {char}
+map  <Leader><Leader>s <Plug>(easymotion-bd-f)
+nmap <Leader><Leader>s <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap <Leader><Leader>r <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader><Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
+
+" Move to word
+"map  <Leader><Leader>f <Plug>(easymotion-bd-w)
+"nmap <Leader><Leader>f <Plug>(easymotion-overwin-w)
+
+" JK motions: Line motions
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+
+let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxy"
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
