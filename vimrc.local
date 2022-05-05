@@ -1,14 +1,16 @@
 let g:ale_fix_on_save = 0
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'javascript.jsx': ['eslint']
+\   'rust': ['eslint', 'tsserver'],
+\   'javascript': ['eslint', 'tsserver'],
+\   'javascript.jsx': ['eslint', 'tsserver'],
+\   'typescript': ['eslint', 'tsserver']
 \}
 
 " In ~/.vim/vimrc, or somewhere similar.
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'javascript.jsx': ['eslint'],
+\   'javascript': ['prettier', 'eslint'],
+\   'javascript.jsx': ['prettier', 'eslint'],
 \ 'ruby': ['rubocop','remove_trailing_lines', 'trim_whitespace' ],
 \}
 
@@ -43,16 +45,20 @@ nnoremap <Leader>s<Leader> :b#<CR>
 nnoremap <Leader><Leader>d :bd<CR>
 
 nnoremap <leader>fr :VtrFocusRunner<cr>
+nnoremap <leader>fc :VtrFlushCommand<cr>
 nnoremap <leader>sf :VtrSendFile<cr>
 nnoremap <leader>m :VtrSendCommandToRunner<cr>
 nnoremap <leader>vap :VtrAttachToPane<cr>
+nnoremap <leader>or :VtrOpenRunner<cr>
+nnoremap <leader>sl :VtrSendLinesToRunner<cr>
+vnoremap <leader>sl :VtrSendLinesToRunner<cr>
 
 nnoremap <C-t>     :tabnew<CR>
 
 nnoremap \ :Ag<SPACE>
 nmap <silent> <C-f> :Ag "<cword>" <CR>
 
-let g:VtrUseVtrMaps = 1
+"let g:VtrUseVtrMaps = 1
 nnoremap <leader>c :VtrSendCtrlC<cr>
 
 " Align GitHub-flavored Markdown tables
@@ -71,7 +77,7 @@ let g:user_emmet_settings = {
 \}
 
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_ruby_rubocop_executable = 'rubocop-daemon-wrapper'
+let g:ale_ruby_rubocop_executable = '/usr/local/bin/rubocop-daemon-wrapper/rubocop'
 
 highlight Pmenu ctermfg=white ctermbg=black
 highlight PmenuSel ctermfg=white ctermbg=darkblue
@@ -83,7 +89,8 @@ command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
 command! ALEToggleFixers call functions#fckALEToggle('global')
 command! ALEToggleFixersBuffer call functions#fckALEToggle('buffer')
 
-noremap <C-n> :call ReactGotoDef()<CR>
+noremap <C-i> :ALEGoToDefinition<CR>
+"noremap <C-n> :call ReactGotoDef()<CR>
 
 let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec}')"
 " vim-rspec mappings
@@ -96,7 +103,9 @@ nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
 
 "let g:prettier#autoformat = 0
 "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-command! EnablePrettier autocmd BufRead,BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.javascript.jsx,*.typescript.tsx PrettierAsync
+command! EnablePrettier autocmd BufRead,BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.javascript.jsx,*.typescript.tsx Prettier
+let g:prettier#exec_cmd_path = "/usr/local/bin/prettier_d"
+let g:prettier#quickfix_enabled = 0
 
 nmap <CR> o<Esc>k
 nmap d<CR> O<Esc>j
@@ -105,16 +114,11 @@ nmap s<CR> jddk
 
 " https://vim.fandom.com/wiki/Copy_filename_to_clipboard
 " Convert slashes to backslashes for Windows.
-if has('win32')
-  nmap <Leader>fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-  nmap ,cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
-
-  " This will copy the path in 8.3 short format, for DOS and Windows 9x
-  nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
-else
-  nmap <Leader>fn :let @*=expand("%")<CR>
-  nmap ,cl :let @*=expand("%:p")<CR>
-endif
+" https://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
+nmap <Leader>fn :let @*=expand("%")<CR>
+nmap <Leader>fb :let @*=expand("%:t")<CR>
+nmap <Leader>fm :let @*=expand("%:p")<CR>
+nmap <Leader>fp :let @*=expand("%:p:h").'/'<CR>
 
 nnoremap <leader>ntf :NERDTreeFind<cr>
 map <C-m> :NERDTreeToggle<CR>
@@ -183,13 +187,78 @@ nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
 "map  <Leader><Leader>f <Plug>(easymotion-bd-w)
 "nmap <Leader><Leader>f <Plug>(easymotion-overwin-w)
 
-" JK motions: Line motions
-map <Leader><Leader>j <Plug>(easymotion-j)
-map <Leader><Leader>k <Plug>(easymotion-k)
-
-let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxy"
+let g:EasyMotion_keys = ";'abcdefghijklmnopqrstuvwxy"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+"let g:airline_section_b = '(branch)'
+"let g:airline_section_z = 'hello %l bye'
+
+syntax enable
+filetype plugin indent on
+let g:rustfmt_autosave = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+"let g:EasyMotion_startofline = 0
+
+nnoremap <leader>u kmtjddgg}O<Esc>P`tzz10<<
+
+" https://www.codeography.com/2013/06/19/navigating-vim-and-tmux-splits
+if exists('$TMUX')
+  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+    let previous_winnr = winnr()
+    silent! execute "wincmd " . a:wincmd
+    if previous_winnr == winnr()
+      call system("tmux select-pane -" . a:tmuxdir)
+      redraw!
+    endif
+  endfunction
+
+  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+else
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
+endif
+
+" https://vim.fandom.com/wiki/Moving_lines_up_or_down#Move_command
+nnoremap <Leader><Leader>j :m .+1<CR>==
+nnoremap <Leader><Leader>k :m .-2<CR>==
+inoremap <Leader><Leader>j <Esc>:m .+1<CR>==gi
+inoremap <Leader><Leader>k <Esc>:m .-2<CR>==gi
+vnoremap <Leader><Leader>j :m '>+1<CR>gv=gv
+vnoremap <Leader><Leader>k :m '<-2<CR>gv=gv
+
+let g:fzf_preview_window = []
+
+let g:airline_section_b = ''
+let g:airline_section_z= '%#__accent_bold#%l%#__restore__#%#__accent_bold#/%L | %#__restore__#%#__accent_bold#%v%#__restore__#'
+"let g:airline_section_z= '%#__accent_bold#%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%v%#__restore__#'
+"let g:airline_section_z= '%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%v%#__restore__#'
+
+nnoremap <leader><leader>a GVgg
+nnoremap <leader><leader>sa mmGVgg :VtrSendLinesToRunner<cr>`mzz

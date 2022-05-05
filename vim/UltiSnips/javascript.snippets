@@ -14,17 +14,18 @@ ${1:name}(props) {
 endsnippet
 
 snippet fn "function" b
+
 ${1:name} = (${2:args}) => {
 }
 
 endsnippet
 
-snippet cl "console log" b
-console.log('${1}', $1)
-endsnippet
+snippet cfn "function" b
 
-snippet ccl "console log" b
-console.log('${1}')
+const ${1:name} = (${2:args}) => {
+	${3}
+}
+
 endsnippet
 
 snippet fco "function component" b
@@ -59,9 +60,9 @@ function $1 () {
 export default $1
 endsnippet
 
-snippet use "useState hook" b
-const [${1:state}, `!p snip.rv = 'set' + (t[1][0].title() if t[1] else '') + (t[1][1:] if t[1] else '') + "] = useState("`${2:''})
-endsnippet
+#snippet use "useState hook" b
+#const [${1:state}, `!p snip.rv = 'set' + (t[1][0].title() if t[1] else '') + (t[1][1:] if t[1] else '') + "] = useState("`${2:''})
+#endsnippet
 
 snippet deco "styled component decorator" b
 .addDecorator(storyFn => <div style={{ textAlign: 'center' }}>{storyFn()}</div>)
@@ -131,10 +132,6 @@ snippet mr "margin-right" b
 margin-right: ${1:1rem};
 endsnippet
 
-snippet ct "console.table" b
-console.table({ ${1} })
-endsnippet
-
 snippet prop "styled components prop" b
 ${props => props.${1}}
 endsnippet
@@ -153,19 +150,7 @@ storiesOf('$1', module)
   .add('default', () => <$1 />)
 endsnippet
 
-snippet imp "import" b
-import ${1} from './$1'
-endsnippet
-
-snippet icmp "import" b
-const ${1:Component} = () => (
-	<div>
-		Hi
-	</div>
-)
-endsnippet
-
-snippet ofh "onClick" i
+snippet oncl "onClick" i
  onClick={() => console.log('onClick')} 
 endsnippet
 
@@ -178,7 +163,7 @@ snippet ona "onClick" i
 endsnippet
 
 snippet onc "onClick" i
- onChange={(e) => ${1:setValue}(e.target.value)} 
+ onClick={() => ${1:setValue}(${2})} 
 endsnippet
 
 snippet sp "cp" i
@@ -196,3 +181,14 @@ endsnippet
 snippet sl "cp" i
 const ${1:variable} = ${2:test}
 endsnippet
+
+snippet frag "frag"
+import { gql } from '@apollo/client'
+export const ${1:Component}CrmUserFragment = gql\`
+  fragment $1CrmUserFragment on CrmUser {
+    id
+  }
+\`
+
+endsnippet
+
