@@ -1,24 +1,3 @@
-let g:ale_fix_on_save = 0
-let g:ale_linters = {
-\   'rust': ['eslint', 'tsserver'],
-\   'javascript': ['eslint', 'tsserver'],
-\   'javascript.jsx': ['eslint', 'tsserver'],
-\   'typescript': ['eslint', 'tsserver']
-\}
-
-" In ~/.vim/vimrc, or somewhere similar.
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'javascript.jsx': ['prettier', 'eslint'],
-\   'typescript': ['prettier', 'eslint'],
-\ 'ruby': ['rubocop','remove_trailing_lines', 'trim_whitespace' ],
-\}
-
-noremap <Leader><Leader>f :ALEFix<CR>
-"noremap <Leader><Leader>n :ALENext<CR>
-"noremap <Leader><Leader>m :ALEPrevious<CR>
-
 noremap <Leader>w :update<CR>
 noremap <Leader>q :quit<CR>
 
@@ -77,23 +56,8 @@ let g:user_emmet_settings = {
 \  },
 \}
 
-"let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_ruby_rubocop_executable = '/usr/local/bin/rubocop-daemon-wrapper/rubocop'
-
 highlight Pmenu ctermfg=white ctermbg=black
 highlight PmenuSel ctermfg=white ctermbg=darkblue
-
-command! ALEDisableFixers       let g:ale_fix_on_save=0
-command! ALEEnableFixers        let g:ale_fix_on_save=1
-command! ALEDisableFixersBuffer let b:ale_fix_on_save=0
-command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
-command! ALEToggleFixers call functions#fckALEToggle('global')
-command! ALEToggleFixersBuffer call functions#fckALEToggle('buffer')
-
-noremap <C-i> :ALEGoToDefinition<CR>
-"nnoremap <Leader>i :ALEGoToDefinition<CR>
-"noremap <Leader><Leader>f :ALEFix<CR>
-"noremap <C-n> :call ReactGotoDef()<CR>
 
 let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec}')"
 " vim-rspec mappings
