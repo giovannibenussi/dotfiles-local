@@ -1,3 +1,9 @@
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+Plug 'isomoar/vim-css-to-inline'
+
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'honza/vim-snippets'
@@ -17,7 +23,6 @@ Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'wakatime/vim-wakatime'
-"Plug 'thoughtbot/vim-rspec'
 Plug 'nishigori/increment-activator'
 Plug 'easymotion/vim-easymotion'
 "Plug 'michaeljsmith/vim-indent-object'
@@ -29,6 +34,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'kqito/vim-easy-replace'
 Plug 'tpope/vim-abolish'
+Plug 'github/copilot.vim'
 
 " Typescript support
 Plug 'leafgarland/typescript-vim'
@@ -36,11 +42,18 @@ Plug 'peitalin/vim-jsx-typescript'
 
 "Plug 'sbdchd/neoformat'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
 Plug 'AndrewRadev/switch.vim'
+
+Plug 'tpope/vim-repeat'
+"Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+"Plug 'vim-ruby/vim-ruby'
+"Plug 'vim-scripts/tComment'
 
 UnPlug 'elixir-lang/vim-elixir'
 UnPlug 'fatih/vim-go'
-"Plug 'janko-m/vim-test'
+UnPlug 'janko-m/vim-test'
 "Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'slim-template/vim-slim'
@@ -50,9 +63,26 @@ Plug 'slim-template/vim-slim'
 "Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-projectionist'
 UnPlug 'tpope/vim-rails'
+UnPlug 'tpope/vim-rspec'
 UnPlug 'tpope/vim-rake'
-Plug 'tpope/vim-repeat'
-"Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-"Plug 'vim-ruby/vim-ruby'
-"Plug 'vim-scripts/tComment'
+
+UnPlug 'junegunn/fzf.vim'
+UnPlug 'elixir-lang/vim-elixir'
+UnPlug 'fatih/vim-go'
+UnPlug 'janko-m/vim-test'
+UnPlug 'pangloss/vim-javascript'
+UnPlug 'pbrisbin/vim-mkdir'
+UnPlug 'slim-template/vim-slim'
+UnPlug 'tpope/vim-bundler'
+UnPlug 'tpope/vim-endwise'
+UnPlug 'tpope/vim-eunuch'
+UnPlug 'tpope/vim-fugitive'
+UnPlug 'tpope/vim-projectionist'
+UnPlug 'tpope/vim-rails'
+UnPlug 'tpope/vim-rake'
+UnPlug 'tpope/vim-repeat'
+UnPlug 'tpope/vim-rhubarb'
+UnPlug 'tpope/vim-surround'
+UnPlug 'vim-ruby/vim-ruby'
+UnPlug 'vim-scripts/tComment'
+

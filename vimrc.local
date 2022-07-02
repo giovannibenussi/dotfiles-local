@@ -11,12 +11,13 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
 \   'javascript.jsx': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
 \ 'ruby': ['rubocop','remove_trailing_lines', 'trim_whitespace' ],
 \}
 
 noremap <Leader><Leader>f :ALEFix<CR>
-noremap <Leader><Leader>n :ALENext<CR>
-noremap <Leader><Leader>m :ALEPrevious<CR>
+"noremap <Leader><Leader>n :ALENext<CR>
+"noremap <Leader><Leader>m :ALEPrevious<CR>
 
 noremap <Leader>w :update<CR>
 noremap <Leader>q :quit<CR>
@@ -76,7 +77,7 @@ let g:user_emmet_settings = {
 \  },
 \}
 
-let g:ale_javascript_eslint_executable = 'eslint_d'
+"let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_ruby_rubocop_executable = '/usr/local/bin/rubocop-daemon-wrapper/rubocop'
 
 highlight Pmenu ctermfg=white ctermbg=black
@@ -90,21 +91,24 @@ command! ALEToggleFixers call functions#fckALEToggle('global')
 command! ALEToggleFixersBuffer call functions#fckALEToggle('buffer')
 
 noremap <C-i> :ALEGoToDefinition<CR>
+"nnoremap <Leader>i :ALEGoToDefinition<CR>
+"noremap <Leader><Leader>f :ALEFix<CR>
 "noremap <C-n> :call ReactGotoDef()<CR>
 
 let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec}')"
 " vim-rspec mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+"map <Leader>t :call RunCurrentSpecFile()<CR>
+"map <Leader>s :call RunNearestSpec()<CR>
+"map <Leader>l :call RunLastSpec()<CR>
+"map <Leader>a :call RunAllSpecs()<CR>
 
 nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
 
 "let g:prettier#autoformat = 0
 "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-command! EnablePrettier autocmd BufRead,BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.javascript.jsx,*.typescript.tsx Prettier
-let g:prettier#exec_cmd_path = "/usr/local/bin/prettier_d"
+command! EnablePrettier autocmd BufRead,BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.javascript.jsx,*.typescript.tsx PrettierAsync
+
+"let g:prettier#exec_cmd_path = "/usr/local/bin/prettier_d"
 let g:prettier#quickfix_enabled = 0
 
 nmap <CR> o<Esc>k
@@ -115,10 +119,16 @@ nmap s<CR> jddk
 " https://vim.fandom.com/wiki/Copy_filename_to_clipboard
 " Convert slashes to backslashes for Windows.
 " https://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
-nmap <Leader>fn :let @*=expand("%")<CR>
-nmap <Leader>fb :let @*=expand("%:t")<CR>
-nmap <Leader>fm :let @*=expand("%:p")<CR>
+
+" Relative file path
+nmap <Leader>fm :let @*=expand("%")<CR> 
+" Absolute file path
+nmap <Leader>ffm :let @*=expand("%:p")<CR>
+" File name
+nmap <Leader>fn :let @*=expand("%:t")<CR>
+" File folder path
 nmap <Leader>fp :let @*=expand("%:p:h").'/'<CR>
+
 
 nnoremap <leader>ntf :NERDTreeFind<cr>
 map <C-m> :NERDTreeToggle<CR>
@@ -136,41 +146,7 @@ nnoremap <leader>fe i onClick={onClick}<Esc>bb
 nnoremap <leader>y "*y
 nnoremap <leader>yy "*yy
 "nnoremap <leader><leader>f UltiSnipsAddFiletypes tsx.javascript.js
-au BufRead,BufNewFile *.tsx set filetype=javascript.jsx
-
-" Map Colemak keys in alphabetical order.
-"noremap d g
-"noremap e k
-"noremap f e
-"noremap g t
-"noremap i l
-"noremap j y
-"noremap k n
-"noremap l u
-"noremap n j
-"noremap o p
-"noremap p r
-"noremap r s
-"noremap s d
-"noremap t f
-"noremap u i
-"noremap y o
-"noremap D G
-"noremap E K
-"noremap F E
-"noremap G T
-"noremap I L
-"noremap J Y
-"noremap K N
-"noremap L U
-"noremap N J
-"noremap O P
-"noremap P R
-"noremap R S
-"noremap S D
-"noremap T F
-"noremap U I
-"noremap Y O
+"au BufRead,BufNewFile *.tsx set filetype=javascript.jsx
 
 " <Leader>f{char} to move to {char}
 map  <Leader><Leader>s <Plug>(easymotion-bd-f)
@@ -187,7 +163,7 @@ nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
 "map  <Leader><Leader>f <Plug>(easymotion-bd-w)
 "nmap <Leader><Leader>f <Plug>(easymotion-overwin-w)
 
-let g:EasyMotion_keys = ";'abcdefghijklmnopqrstuvwxy"
+let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxy"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -262,3 +238,57 @@ let g:airline_section_z= '%#__accent_bold#%l%#__restore__#%#__accent_bold#/%L | 
 
 nnoremap <leader><leader>a GVgg
 nnoremap <leader><leader>sa mmGVgg :VtrSendLinesToRunner<cr>`mzz
+
+" Map GitHub Copilot to ctrl-j
+"imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+"imap <silent><script><expr> <C-M> <Plug>(copilot-next)
+"imap <C-m> <Plug>(copilot-next)
+"imap <C-,> <Plug>(copilot-previous)
+"imap <C-m> <Plug>(copilot-next)
+"imap <C-,> <Plug>(copilot-previous)
+"let g:copilot_no_tab_map = v:true
+"imap <C-M> <Plug>(copilot-next)
+"imap <C-,> <Plug>(copilot-previous)
+
+set nohlsearch
+
+" ===== COC Config =====
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+set cmdheight=2
+
+nmap <silent> <Leader>i <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <silent> <Leader><Leader>m <Plug>(coc-diagnostic-prev)
+nmap <silent> <Leader><Leader>n <Plug>(coc-diagnostic-next)
+
+"nmap <silent> gm <Plug>(coc-diagnostic-prev)
+"nmap <silent> gn <Plug>(coc-diagnostic-next)
+
+nmap <leader>rn <Plug>(coc-rename)
+
+autocmd bufnewfile,bufread *.tsx set filetype=typescriptreact
+autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
+" ===== COC Config =====
+
+let g:csstoinline_no_mapping = 1
+let g:csstoinline_wrap_pixels = 1
+nmap <leader>ti <Plug>ToInlineN
+xmap <leader>ti <Plug>ToInlineV
+nmap <leader>fi <Plug>FromInlineN
+xmap <leader>fi <Plug>FromInlineV
