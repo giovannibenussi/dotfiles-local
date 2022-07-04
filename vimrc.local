@@ -60,6 +60,7 @@ highlight Pmenu ctermfg=white ctermbg=black
 highlight PmenuSel ctermfg=white ctermbg=darkblue
 
 let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec}')"
+
 " vim-rspec mappings
 "map <Leader>t :call RunCurrentSpecFile()<CR>
 "map <Leader>s :call RunNearestSpec()<CR>
@@ -256,3 +257,14 @@ nmap <leader>ti <Plug>ToInlineN
 xmap <leader>ti <Plug>ToInlineV
 nmap <leader>fi <Plug>FromInlineN
 xmap <leader>fi <Plug>FromInlineV
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
