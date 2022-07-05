@@ -71,7 +71,7 @@ nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
 
 "let g:prettier#autoformat = 0
 "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-command! EnablePrettier autocmd BufRead,BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.javascript.jsx,*.typescript.tsx PrettierAsync
+"command! EnablePrettier autocmd BufRead,BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.javascript.jsx,*.typescript.tsx PrettierAsync
 
 "let g:prettier#exec_cmd_path = "/usr/local/bin/prettier_d"
 let g:prettier#quickfix_enabled = 0
@@ -268,3 +268,37 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+
+" disable CoC by default
+autocmd VimEnter * exe "CocDisable" 
+" enable CoC when entering vim to Rust file
+"autocmd VimEnter *.ts exe "CocEnable" 
+" enable CoC when switching buffer to Rust file
+"autocmd BufEnter *.rs exe "CocEnable" 
+" disable CoC when exiting Rust file buffer
+"autocmd BufLeave *.rs exe "CocDisable"
+
+noremap <Leader>p :Prettier<CR>
+
+function! ToggleTestAutoGroup()
+    if !exists('#TestAutoGroup#BufWritePre')
+        augroup TestAutoGroup
+            autocmd!
+            autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+            echom "Prettier Enabled"
+        augroup END
+    else
+        augroup TestAutoGroup
+            autocmd!
+            echom "Prettier Disabled"
+        augroup END
+    endif
+endfunction
+
+nnoremap <Leader><Leader>p :call ToggleTestAutoGroup()<CR>
+
+" Fix issue with syntax highlighting on long files.
+" https://github.com/neovim/neovim/issues/12274#issuecomment-625853056
+syntax sync fromstart
