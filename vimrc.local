@@ -369,3 +369,5 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+hi TabLineSel ctermfg=white ctermbg=lightblue
