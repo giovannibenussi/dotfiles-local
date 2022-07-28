@@ -14,6 +14,7 @@ syntax on
 colorscheme onedark
 highlight SpellCap cterm=underline ctermfg=black ctermbg=yellow
 highlight SpellBad cterm=underline ctermfg=red ctermbg=NONE
+highlight Normal guibg=NONE ctermbg=NONE
 
 " Split panes shortcuts
 map <Leader><Leader>- :sp<Esc>
