@@ -53,6 +53,36 @@ nnoremap <leader>c :VtrSendCtrlC<cr>
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 ino <C-A> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
 
+" Allow to switch between buffers without having to save them and don't loose ch anges
+set hidden
+
+let g:user_emmet_leader_key='<C-k>'
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends': 'jsx',
+\      'quote_char': "'",
+\  },
+\}
+
+highlight Pmenu ctermfg=white ctermbg=black
+highlight PmenuSel ctermfg=white ctermbg=darkblue
+
+let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec}')"
+
+" vim-rspec mappings
+"map <Leader>t :call RunCurrentSpecFile()<CR>
+"map <Leader>s :call RunNearestSpec()<CR>
+"map <Leader>l :call RunLastSpec()<CR>
+"map <Leader>a :call RunAllSpecs()<CR>
+
+nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
+
+"let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gr aphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+"command! EnablePrettier autocmd BufRead,BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx ,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.javascript.jsx,* .typescript.tsx PrettierAsync
+
+"let g:prettier#exec_cmd_path = "/usr/local/bin/prettier_d"
+let g:prettier#quickfix_enabled = 0
 
 nmap <CR> o<Esc>k
 nmap d<CR> O<Esc>j
