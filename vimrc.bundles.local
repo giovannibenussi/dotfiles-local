@@ -1,3 +1,9 @@
+call plug#begin()
+
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'joshdick/onedark.vim'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
   \ 'coc-tsserver'
@@ -5,10 +11,8 @@ let g:coc_global_extensions = [
 Plug 'isomoar/vim-css-to-inline'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
-Plug 'joshdick/onedark.vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
@@ -46,22 +50,4 @@ Plug 'tpope/vim-surround'
 "Plug 'vim-ruby/vim-ruby'
 "Plug 'vim-scripts/tComment'
 
-UnPlug 'junegunn/fzf.vim'
-UnPlug 'elixir-lang/vim-elixir'
-UnPlug 'fatih/vim-go'
-UnPlug 'janko-m/vim-test'
-UnPlug 'pangloss/vim-javascript'
-UnPlug 'pbrisbin/vim-mkdir'
-UnPlug 'slim-template/vim-slim'
-UnPlug 'tpope/vim-bundler'
-UnPlug 'tpope/vim-endwise'
-UnPlug 'tpope/vim-eunuch'
-UnPlug 'tpope/vim-fugitive'
-UnPlug 'tpope/vim-projectionist'
-UnPlug 'tpope/vim-rails'
-UnPlug 'tpope/vim-rake'
-UnPlug 'tpope/vim-repeat'
-UnPlug 'tpope/vim-rhubarb'
-UnPlug 'tpope/vim-surround'
-UnPlug 'vim-ruby/vim-ruby'
-UnPlug 'vim-scripts/tComment'
+call plug#end()
