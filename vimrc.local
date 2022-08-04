@@ -1,6 +1,12 @@
-source ~/dotfiles/vimrc.bundles.local
+
 let mapleader = " "
+
+source ~/dotfiles/vimrc.bundles.local
+source ~/dotfiles/vim/coc.local
+
+set nohlsearch
 set number
+set shiftwidth=4
 
 " CTRLP Config
 " https://github.com/ctrlpvim/ctrlp.vim
@@ -147,11 +153,6 @@ nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
 
 let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz;"
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 "let g:airline_section_b = '(branch)'
 "let g:airline_section_z = 'hello %l bye'
 
@@ -213,8 +214,12 @@ vnoremap <Leader><Leader>k :m '<-2<CR>gv=gv
 
 let g:fzf_preview_window = []
 
-let g:airline_section_b = ''
+"let g:airline_section_b = ''
+let g:airline_section_b = "%{get(g:,'coc_git_status','')}"
 let g:airline_section_z= '%#__accent_bold#%l%#__restore__#%#__accent_bold#/%L | %#__restore__#%#__accent_bold#%v%#__restore__#'
+
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#show_coc_status = 1
 "let g:airline_section_z= '%#__accent_bold#%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%v%#__restore__#'
 "let g:airline_section_z= '%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%v%#__restore__#'
 
@@ -231,51 +236,6 @@ nnoremap <leader><leader>sa mmGVgg :VtrSendLinesToRunner<cr>`mzz
 "let g:copilot_no_tab_map = v:true
 "imap <C-M> <Plug>(copilot-next)
 "imap <C-,> <Plug>(copilot-previous)
-
-set nohlsearch
-
-" ===== COC Config =====
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ CheckBackspace() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-set cmdheight=2
-
-nmap <silent> <Leader>i <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <silent> <Leader><Leader>m <Plug>(coc-diagnostic-prev)
-nmap <silent> <Leader><Leader>n <Plug>(coc-diagnostic-next)
-
-"nmap <silent> gm <Plug>(coc-diagnostic-prev)
-"nmap <silent> gn <Plug>(coc-diagnostic-next)
-
-nmap <leader>rn <Plug>(coc-rename)
-
-autocmd bufnewfile,bufread *.tsx set filetype=typescriptreact
-autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-" ===== COC Config =====
 
 let g:csstoinline_no_mapping = 1
 let g:csstoinline_wrap_pixels = 1
@@ -329,16 +289,16 @@ nnoremap <Leader><Leader>p :call ToggleTestAutoGroup()<CR>
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>av  <Plug>(coc-codeaction-selected)
-nmap <leader>av  <Plug>(coc-codeaction-selected)
+"xmap <leader>av  <Plug>(coc-codeaction-selected)
+"nmap <leader>av  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
+"nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader><leader>f  <Plug>(coc-fix-current)
+"nmap <leader><leader>f  <Plug>(coc-fix-current)
 
 " Run the Code Lens action on the current line.
-nmap <leader>al  <Plug>(coc-codelens-action)
+"nmap <leader>al  <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
