@@ -249,12 +249,12 @@ tmux_conf_copy_to_os_clipboard=false
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
-#set -g mode-keys vi
+set -g status-keys vi
+set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
@@ -269,7 +269,7 @@ tmux_conf_copy_to_os_clipboard=false
 
 
 
-# bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
 # set-option -g status-bg '#3f51b5'
 
 # set-option -g status-right " #(battery -t) #(date '+%a, %b %d - %I:%M') "
@@ -300,7 +300,6 @@ bind -n C-l run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux
 
 set-option -g default-command "reattach-to-user-namespace -l zsh"
 
-# set -g mouse on
 # set -s escape-time 50
 set -g prefix2 C-s
 
@@ -314,7 +313,6 @@ bind-key y setw synchronize-panes off \; display-message "Panes Not Synchronized
 
 bind k send-keys -R
 # bind-key j command-prompt -p "join pane from: "  "join-pane -h -s '%%'"
-bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
 set -s escape-time 0
 

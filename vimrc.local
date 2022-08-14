@@ -6,12 +6,16 @@ source ~/dotfiles/vim/coc.local
 
 set nohlsearch
 set number
-set shiftwidth=4
 
-" CTRLP Config
-" https://github.com/ctrlpvim/ctrlp.vim
-" Ignore files in .gitignore
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" From https://vi.stackexchange.com/questions/13080/setting-tab-to-2-spaces
+filetype plugin indent on
+" On pressing tab, insert 2 spaces
+set expandtab
+" show existing tab with 2 spaces width
+set tabstop=2
+set softtabstop=2
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2
 
 noremap <Leader>w :update<CR>
 noremap <Leader>q :quit<CR>
@@ -57,9 +61,6 @@ nnoremap <leader>sl :VtrSendLinesToRunner<cr>
 vnoremap <leader>sl :VtrSendLinesToRunner<cr>
 
 nnoremap <C-t>     :tabnew<CR>
-
-nnoremap \ :Ag<SPACE>
-nmap <silent> <C-f> :Ag "<cword>" <CR>
 
 "let g:VtrUseVtrMaps = 1
 nnoremap <leader>c :VtrSendCtrlC<cr>
@@ -116,11 +117,6 @@ nmap <Leader>ffm :let @*=expand("%:p")<CR>
 nmap <Leader>fn :let @*=expand("%:t")<CR>
 " File folder path
 nmap <Leader>fp :let @*=expand("%:p:h").'/'<CR>
-
-
-nnoremap <leader>ntf :NERDTreeFind<cr>
-"map <C-m> :NERDTreeToggle<CR>
-nnoremap <C-n> :NERDTree<CR>
 
 nnoremap <C-S-tab> :tabprevious<CR>
 nnoremap <C-tab>   :tabnext<CR>

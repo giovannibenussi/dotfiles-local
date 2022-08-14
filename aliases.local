@@ -1,3 +1,0 @@
-alias gcs=git checkout staging
-alias gstl=git --no-pager stash list
-alias he='git --no-pager stash list'

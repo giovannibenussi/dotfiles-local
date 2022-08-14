@@ -1,0 +1,6 @@
+--ignore-dir=dist/
+--ignore-dir=.next/
+--ignore-dir=node_modules/
+--ignore-dir=.yarn/
+--ignore-dir=build/
+--ignore-file=ext:eslintcache
