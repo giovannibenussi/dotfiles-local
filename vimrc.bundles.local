@@ -6,11 +6,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'kana/vim-textobj-user' " Required for vim-textobj-entire
 Plug 'kana/vim-textobj-entire'
 Plug 'tommcdo/vim-exchange'
+
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 Plug 'f-person/git-blame.nvim'
 map <Leader>gb :call GitBlameToggle()<CR>
 map <Leader><Leader>gb :Git blame<CR>
+let g:gitblame_enabled = 0
 
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'poetic/vim-textobj-javascript'
@@ -22,8 +25,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 "let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 " Ignore other folders
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  'node_modules\|.next\|\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  'node_modules\|.next\|dist\|\v[\/]\.(git|hg|svn)$',
   \ }
+" Don't update working path everytime it runs
+let g:ctrlp_working_path_mode = 0
 
 Plug 'scrooloose/nerdtree'
 nnoremap <leader>ntf :NERDTreeFind<cr>
@@ -77,7 +82,7 @@ Plug 'rakr/vim-one'
 Plug 'rust-lang/rust.vim'
 "Plug 'cespare/vim-toml', { 'branch': 'main' }
 "Plug 'kqito/vim-easy-replace'
-"Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish'
 "Plug 'github/copilot.vim'
 
 "Plug 'AndrewRadev/switch.vim'

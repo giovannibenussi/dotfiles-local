@@ -50,6 +50,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 
 nnoremap <Leader>s<Leader> :b#<CR>
 nnoremap <Leader><Leader>d :bd<CR>
+nnoremap <Leader><Leader>r :e!<CR>
 
 nnoremap <leader>fr :VtrFocusRunner<cr>
 nnoremap <leader>fc :VtrFlushCommand<cr>
@@ -133,11 +134,11 @@ nnoremap <leader>yy "*yy
 "au BufRead,BufNewFile *.tsx set filetype=javascript.jsx
 
 " <Leader>f{char} to move to {char}
-map  <Leader><Leader>s <Plug>(easymotion-bd-f)
-nmap <Leader><Leader>s <Plug>(easymotion-overwin-f)
+map  <Leader><Leader>e <Plug>(easymotion-bd-f)
+nmap <Leader><Leader>e <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
-nmap <Leader><Leader>r <Plug>(easymotion-overwin-f2)
+"nmap <Leader><Leader>r <Plug>(easymotion-overwin-f2)
 
 " Move to line
 map <Leader><Leader>l <Plug>(easymotion-bd-jk)
@@ -147,7 +148,7 @@ nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
 "map  <Leader><Leader>f <Plug>(easymotion-bd-w)
 "nmap <Leader><Leader>f <Plug>(easymotion-overwin-w)
 
-let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz;"
+"let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz"
 
 "let g:airline_section_b = '(branch)'
 "let g:airline_section_z = 'hello %l bye'
@@ -307,10 +308,13 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-nmap <Leader><Leader>r :so ~/dotfiles-local/vimrc.local<CR>
+"nmap <Leader><Leader>r :so ~/dotfiles-local/vimrc.local<CR>
 " console.log inner word
 nmap <Leader>lw "xyiwo<esc>iconsole.log(""<esc>"xPla,  <esc>"xPa)<esc>
 nmap <Leader>lwi "xyiwo<esc>iconsole.log(""<esc>"xPla,  <esc>"xPa)<esc>kdd_
+
+nmap <Leader>yi gg}kyy
+nmap <Leader>pi mbgg}P`bzz
 
 nnoremap <leader>tfo :NERDTreeFocus<CR>
 nnoremap <C-m> :NERDTree<CR>
@@ -336,3 +340,15 @@ if (empty($TMUX))
 endif
 
 hi TabLineSel ctermfg=white ctermbg=lightblue
+
+" Open current file in a new tab
+noremap <Leader><Leader>t :tab sb<CR>
+
+noremap <Leader><Leader>fap :s/'/\&apos;<CR>
+
+" Generate type of the word under cursor
+noremap <Leader><Leader>gt yiwf)i: <esc>PaType<esc>O<CR>type <esc>pAType = {<CR><CR>}<CR><esc>kki<tab>
+" Add // @ts-ignore above the current line
+noremap <Leader><Leader>ti O// @ts-ignore<esc>j
+noremap <Leader><Leader>ei O// eslint-disable-next-line<esc>j
+imap <C-l> <Plug>(coc-snippets-expand)

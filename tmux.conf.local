@@ -249,7 +249,7 @@ tmux_conf_copy_to_os_clipboard=false
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-set -g mouse on
+# set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
@@ -317,3 +317,10 @@ bind k send-keys -R
 set -s escape-time 0
 
 setw -g window-status-current-style fg=white,bg=#ec4899
+
+# renumber windows sequentially after closing any of them
+set -g renumber-windows on
+
+# start window numbers at 1 to match keyboard order with tmux window order
+set -g base-index 1
+set-window-option -g pane-base-index 1

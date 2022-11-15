@@ -1,0 +1,46 @@
+snippet fc
+import React from 'react'
+
+function ${1:Component}() {
+	return <div>${2:Hi}</div>
+}
+endsnippet
+
+snippet fce
+import React from 'react'
+
+export function ${1:Component}() {
+	return <div>${2:Hi}</div>
+}
+endsnippet
+
+snippet imd
+import { $1 } from './$1'
+endsnippet
+
+snippet fne
+import React from 'react'
+
+export function $1(){
+  return (
+    <div>
+      Hi
+    </div>
+  )
+}
+endsnippet
+
+snippet pro
+${1:onClick}={$1} 
+endsnippet
+
+snippet st
+const ${1:Wrapper} = styled.div\`
+\`
+
+endsnippet
+
+snippet ims
+import styled from 'styled-components'
+endsnippet
+
