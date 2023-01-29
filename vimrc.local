@@ -4,6 +4,9 @@ let mapleader = " "
 source ~/dotfiles/vimrc.bundles.local
 source ~/dotfiles/vim/coc.local
 
+" Don't insert comments when inserting a new line after a comment
+autocmd BufEnter * setlocal formatoptions-=cro
+
 set nohlsearch
 set number
 
@@ -101,10 +104,10 @@ nnoremap <C-c> :VtrSendKeysRaw ^C<cr>
 "let g:prettier#exec_cmd_path = "/usr/local/bin/prettier_d"
 let g:prettier#quickfix_enabled = 0
 
-nmap <CR> o<Esc>k
-nmap d<CR> O<Esc>j
-nmap a<CR> kdd
-nmap s<CR> jddk
+"nmap <CR> o<Esc>k
+"nmap d<CR> O<Esc>j
+"nmap a<CR> kdd
+"nmap s<CR> jddk
 
 " https://vim.fandom.com/wiki/Copy_filename_to_clipboard
 " Convert slashes to backslashes for Windows.
@@ -223,6 +226,7 @@ let g:airline#extensions#coc#show_coc_status = 1
 nnoremap <leader><leader>a GVgg
 nnoremap <leader><leader>sa mmGVgg :VtrSendLinesToRunner<cr>`mzz
 
+"let g:copilot_enabled = v:false
 " Map GitHub Copilot to ctrl-j
 "imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 "imap <silent><script><expr> <C-M> <Plug>(copilot-next)
@@ -230,9 +234,19 @@ nnoremap <leader><leader>sa mmGVgg :VtrSendLinesToRunner<cr>`mzz
 "imap <C-,> <Plug>(copilot-previous)
 "imap <C-m> <Plug>(copilot-next)
 "imap <C-,> <Plug>(copilot-previous)
-"let g:copilot_no_tab_map = v:true
+let g:copilot_no_tab_map = v:true
 "imap <C-M> <Plug>(copilot-next)
 "imap <C-,> <Plug>(copilot-previous)
+imap <silent><script><expr> <C-n> copilot#Accept("\<CR>")
+imap <silent> <C-m> <Plug>(copilot-next)
+imap <silent> <C-b> <Plug>(copilot-previous)
+imap <silent> <C-\> <Plug>(copilot-dismiss)
+nnoremap <leader><leader>l :Copilot panel<cr>
+highlight CopilotSuggestion guifg=#8b5cf6 ctermfg=8
+
+"imap <silent> <C-j> <Plug>(copilot-next)
+"imap <silent> <C-k> <Plug>(copilot-previous)
+"imap <silent> <C-\> <Plug>(copilot-dismiss)
 
 let g:csstoinline_no_mapping = 1
 let g:csstoinline_wrap_pixels = 1
@@ -253,8 +267,6 @@ function! s:show_documentation()
 endfunction
 
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
-
-let g:copilot_enabled = v:false
 
 " disable CoC by default
 "autocmd VimEnter * exe "CocDisable" 
@@ -352,3 +364,4 @@ noremap <Leader><Leader>gt yiwf)i: <esc>PaType<esc>O<CR>type <esc>pAType = {<CR>
 noremap <Leader><Leader>ti O// @ts-ignore<esc>j
 noremap <Leader><Leader>ei O// eslint-disable-next-line<esc>j
 imap <C-l> <Plug>(coc-snippets-expand)
+

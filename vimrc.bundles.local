@@ -83,7 +83,7 @@ Plug 'rust-lang/rust.vim'
 "Plug 'cespare/vim-toml', { 'branch': 'main' }
 "Plug 'kqito/vim-easy-replace'
 Plug 'tpope/vim-abolish'
-"Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 "Plug 'AndrewRadev/switch.vim'
 

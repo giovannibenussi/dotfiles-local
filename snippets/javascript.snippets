@@ -14,6 +14,16 @@ export function ${1:Component}() {
 }
 endsnippet
 
+snippet sto
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { $1 } from '.'
+
+storiesOf('$1', module).add('${2:default}', () => (
+  <$1 />
+))
+endsnippet
+
 snippet imd
 import { $1 } from './$1'
 endsnippet
@@ -35,12 +45,17 @@ ${1:onClick}={$1}
 endsnippet
 
 snippet st
-const ${1:Wrapper} = styled.div\`
+const ${1:Wrapper} = styled.${2:div}\`
+	$3
 \`
 
 endsnippet
 
 snippet ims
 import styled from 'styled-components'
+endsnippet
+
+snippet stp
+${(props) => props.${1:test} ? '${2}' : '${3}'}
 endsnippet
 
