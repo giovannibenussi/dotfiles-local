@@ -1,5 +1,7 @@
 call plug#begin()
 
+Plug '0xStabby/chatgpt-vim'
+
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

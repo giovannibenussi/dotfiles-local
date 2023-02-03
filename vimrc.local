@@ -9,6 +9,7 @@ autocmd BufEnter * setlocal formatoptions-=cro
 
 set nohlsearch
 set number
+set relativenumber
 
 " From https://vi.stackexchange.com/questions/13080/setting-tab-to-2-spaces
 filetype plugin indent on
