@@ -31,13 +31,26 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 set tags^=./.git/tags;
 "colorscheme night-owl
 "colorscheme one
-let g:onedark_termcolors=256
-"set background=dark
+"let g:onedark_termcolors=256
+set background=dark
 syntax on
 colorscheme onedark
-highlight SpellCap cterm=underline ctermfg=black ctermbg=yellow
-highlight SpellBad cterm=underline ctermfg=red ctermbg=NONE
-highlight Normal guibg=NONE ctermbg=NONE
+
+"colorscheme onehalflight
+"let g:airline_theme='onehalflight'
+"set background=light
+
+"let g:airline_theme='onehalfdark'
+"colorscheme onehalfdark
+
+
+"highlight SpellCap cterm=underline ctermfg=black ctermbg=yellow
+"highlight SpellBad cterm=underline ctermfg=red ctermbg=NONE
+"highlight Normal guibg=NONE ctermbg=NONE
+
+"highlight Pmenu ctermfg=white ctermbg=black
+"highlight PmenuSel ctermfg=white ctermbg=darkblue
+
 
 " Split panes shortcuts
 map <Leader><Leader>- :sp<Esc>
@@ -84,9 +97,6 @@ let g:user_emmet_settings = {
 \      'quote_char': "'",
 \  },
 \}
-
-highlight Pmenu ctermfg=white ctermbg=black
-highlight PmenuSel ctermfg=white ctermbg=darkblue
 
 let g:rspec_command = "call VtrSendCommand('bundle exec spring rspec {spec}')"
 
@@ -228,26 +238,13 @@ nnoremap <leader><leader>a GVgg
 nnoremap <leader><leader>sa mmGVgg :VtrSendLinesToRunner<cr>`mzz
 
 "let g:copilot_enabled = v:false
-" Map GitHub Copilot to ctrl-j
-"imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-"imap <silent><script><expr> <C-M> <Plug>(copilot-next)
-"imap <C-m> <Plug>(copilot-next)
-"imap <C-,> <Plug>(copilot-previous)
-"imap <C-m> <Plug>(copilot-next)
-"imap <C-,> <Plug>(copilot-previous)
 let g:copilot_no_tab_map = v:true
-"imap <C-M> <Plug>(copilot-next)
-"imap <C-,> <Plug>(copilot-previous)
 imap <silent><script><expr> <C-n> copilot#Accept("\<CR>")
 imap <silent> <C-m> <Plug>(copilot-next)
 imap <silent> <C-b> <Plug>(copilot-previous)
 imap <silent> <C-\> <Plug>(copilot-dismiss)
 nnoremap <leader><leader>l :Copilot panel<cr>
 highlight CopilotSuggestion guifg=#8b5cf6 ctermfg=8
-
-"imap <silent> <C-j> <Plug>(copilot-next)
-"imap <silent> <C-k> <Plug>(copilot-previous)
-"imap <silent> <C-\> <Plug>(copilot-dismiss)
 
 let g:csstoinline_no_mapping = 1
 let g:csstoinline_wrap_pixels = 1
