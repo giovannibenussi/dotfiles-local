@@ -275,6 +275,7 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 " disable CoC when exiting Rust file buffer
 "autocmd BufLeave *.rs exe "CocDisable"
 
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 noremap <Leader>p :Prettier<CR>
 
 function! ToggleTestAutoGroup()

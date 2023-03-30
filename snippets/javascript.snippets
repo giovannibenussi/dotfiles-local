@@ -63,3 +63,17 @@ snippet stp
 ${(props) => props.${1:test} ? '${2}' : '${3}'}
 endsnippet
 
+snippet mu
+import { gql, useMutation } from '@apollo/client'
+
+const ${1:mutationName}Mutation = gql\`
+  mutation ${1:mutationName}Mutation {
+    ${1:mutationName} {
+      id
+    }
+  }
+\`
+
+const [${1:mutationName}] = useMutation(${1:mutationName}Mutation)
+
+endsnippet

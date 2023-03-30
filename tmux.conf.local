@@ -298,7 +298,8 @@ bind -n C-j run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux
 bind -n C-k run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux send-keys C-k) || tmux select-pane -U"
 bind -n C-l run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux send-keys C-l) || tmux select-pane -R"
 
-set-option -g default-command "reattach-to-user-namespace -l zsh"
+# Disable: https://unix.stackexchange.com/questions/128190/tmux-exits-immediately-after-starting
+#set-option -g default-command "reattach-to-user-namespace -l zsh"
 
 # set -s escape-time 50
 set -g prefix2 C-s
