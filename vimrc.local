@@ -55,6 +55,9 @@ colorscheme onedark
 " Split panes shortcuts
 map <Leader><Leader>- :sp<Esc>
 map <Leader><Leader>\ :vsp<Esc>
+map <Leader><Leader>s :sp<Esc>
+map <Leader><Leader>v :vsp<Esc>
+map <Leader><Leader>nv :vsp<Esc><C-w>l:ene<CR>
 
 let g:winresizer_start_key = '<Leader>e'
 let g:winresizer_vert_resize = 2
@@ -162,7 +165,7 @@ nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
 "map  <Leader><Leader>f <Plug>(easymotion-bd-w)
 "nmap <Leader><Leader>f <Plug>(easymotion-overwin-w)
 
-"let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz"
+let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz"
 
 "let g:airline_section_b = '(branch)'
 "let g:airline_section_z = 'hello %l bye'
@@ -277,6 +280,7 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 noremap <Leader>p :Prettier<CR>
+noremap <Leader>u :PrettierAsync<CR>
 
 function! ToggleTestAutoGroup()
     if !exists('#TestAutoGroup#BufWritePre')
@@ -364,3 +368,15 @@ noremap <Leader><Leader>ti O// @ts-ignore<esc>j
 noremap <Leader><Leader>ei O// eslint-disable-next-line<esc>j
 imap <C-l> <Plug>(coc-snippets-expand)
 
+
+nnoremap <Leader>\ :vsplit<CR><C-w>w
+nnoremap <Leader>- :split<CR><C-w>w
+nnoremap <Leader><Leader>k :resize -5<CR>
+nnoremap <Leader><Leader>j :resize +5<CR>
+nnoremap <Leader><Leader>h :vertical resize -5<CR>
+nnoremap <Leader><Leader>l :vertical resize +5<CR>
+
+nnoremap <Leader><Leader><Leader>k :resize -1<CR>
+nnoremap <Leader><Leader><Leader>j :resize +1<CR>
+nnoremap <Leader><Leader><Leader>h :vertical resize -1<CR>
+nnoremap <Leader><Leader><Leader>l :vertical resize +1<CR>

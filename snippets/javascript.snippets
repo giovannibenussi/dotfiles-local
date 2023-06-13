@@ -28,6 +28,10 @@ snippet imd
 import { $1 } from './$1'
 endsnippet
 
+snippet imde
+import $1 from './$1'
+endsnippet
+
 snippet imcd
 import $1 from 'components/$1'
 endsnippet
@@ -76,4 +80,25 @@ const ${1:mutationName}Mutation = gql\`
 
 const [${1:mutationName}] = useMutation(${1:mutationName}Mutation)
 
+endsnippet
+
+snippet fcde
+import React from 'react'
+
+export default function $1() {
+  return <div>$2</div>
+}
+endsnippet
+
+snippet imdet
+import React from 'react'
+import type { ReactElement } from "react"
+
+export interface UpcomingAdCardProps {
+  
+}
+
+export default function UpcomingAdCard(props: UpcomingAdCardProps): ReactElement {
+  return <div>Hi</div>
+}
 endsnippet

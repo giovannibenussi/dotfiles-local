@@ -3,4 +3,5 @@
 --ignore-dir=node_modules/
 --ignore-dir=.yarn/
 --ignore-dir=build/
+--ignore-dir=log/
 --ignore-file=ext:eslintcache
