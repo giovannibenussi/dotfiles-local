@@ -31,7 +31,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Ignore other folders
 " \ 'dir':  'node_modules\|log\|.next\|dist\|\v[\/]\.(git|hg|svn)\|app\/assets\/builds\|tmp$',
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  'node_modules\|log\|.next\|dist\|\v[\/]\.(git|hg|svn)\|app\/assets\/builds\|tmp',
+  \ 'dir':  'tmp\|node_modules\|log\|.next\|dist\|\v[\/]\.(git|hg|svn)\|app\/assets\/builds\|tmp',
 \ }
 " Don't update working path everytime it runs
 let g:ctrlp_working_path_mode = 0

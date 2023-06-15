@@ -4,4 +4,6 @@
 --ignore-dir=.yarn/
 --ignore-dir=build/
 --ignore-dir=log/
+--ignore-dir=tmp/
+--ignore-dir=app/assets/builds/
 --ignore-file=ext:eslintcache
