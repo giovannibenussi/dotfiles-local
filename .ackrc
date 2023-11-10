@@ -6,4 +6,7 @@
 --ignore-dir=log/
 --ignore-dir=tmp/
 --ignore-dir=app/assets/builds/
+--ignore-dir=out
+--ignore-dir=public/_next/
+--ignore-dir=public/sales/_next/
 --ignore-file=ext:eslintcache

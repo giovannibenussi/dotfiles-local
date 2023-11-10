@@ -15,10 +15,10 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
-Plug 'f-person/git-blame.nvim'
-map <Leader>gb :call GitBlameToggle()<CR>
-map <Leader><Leader>gb :Git blame<CR>
-let g:gitblame_enabled = 0
+" Plug 'f-person/git-blame.nvim'
+" map <Leader>gb :GitBlameToggle<CR>
+" map <Leader><Leader>gb :Git blame<CR>
+" let g:gitblame_enabled = 0
 
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'poetic/vim-textobj-javascript'
@@ -30,9 +30,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 "let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 " Ignore other folders
 " \ 'dir':  'node_modules\|log\|.next\|dist\|\v[\/]\.(git|hg|svn)\|app\/assets\/builds\|tmp$',
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  'tmp\|node_modules\|log\|.next\|dist\|\v[\/]\.(git|hg|svn)\|tmp',
+"\ }
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  'tmp\|node_modules\|log\|.next\|dist\|\v[\/]\.(git|hg|svn)\|app\/assets\/builds\|tmp',
-\ }
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|node_modules$',
+  \ }
 " Don't update working path everytime it runs
 let g:ctrlp_working_path_mode = 0
 
@@ -55,7 +58,8 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_new_list_item_indent = 2
 
 let g:coc_global_extensions = [
-  \ 'coc-tsserver'
+  \ 'coc-tsserver',
+  \ 'coc-prettier'
   \ ]
 Plug 'isomoar/vim-css-to-inline'
 Plug 'pangloss/vim-javascript'
@@ -75,7 +79,7 @@ nmap <silent> <C-f> :Ack! "<cword>" <CR>
 
 "Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'simeji/winresizer'
+Plug 'simeji/winresizer'
 "Plug 'thoughtbot/vim-rspec'
 Plug 'vim-airline/vim-airline'
 Plug 'wakatime/vim-wakatime'

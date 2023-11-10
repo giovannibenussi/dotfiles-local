@@ -57,7 +57,7 @@ map <Leader><Leader>- :sp<Esc>
 map <Leader><Leader>\ :vsp<Esc>
 map <Leader><Leader>s :sp<Esc>
 map <Leader><Leader>v :vsp<Esc>
-map <Leader><Leader>nv :vsp<Esc><C-w>l:ene<CR>
+"map <Leader><Leader>nv :vsp<Esc><C-w>l:ene<CR>
 
 let g:winresizer_start_key = '<Leader>e'
 let g:winresizer_vert_resize = 2
@@ -359,7 +359,7 @@ hi TabLineSel ctermfg=white ctermbg=lightblue
 " Open current file in a new tab
 noremap <Leader><Leader>t :tab sb<CR>
 
-noremap <Leader><Leader>fap :s/'/\&apos;<CR>
+"noremap <Leader><Leader>fap :s/'/\&apos;<CR>
 
 " Generate type of the word under cursor
 noremap <Leader><Leader>gt yiwf)i: <esc>PaType<esc>O<CR>type <esc>pAType = {<CR><CR>}<CR><esc>kki<tab>
@@ -380,3 +380,10 @@ nnoremap <Leader><Leader><Leader>k :resize -1<CR>
 nnoremap <Leader><Leader><Leader>j :resize +1<CR>
 nnoremap <Leader><Leader><Leader>h :vertical resize -1<CR>
 nnoremap <Leader><Leader><Leader>l :vertical resize +1<CR>
+
+" Close all buffers but the current one
+nnoremap <Leader><Leader>at mp:%bd\|e#<CR>`p
+
+" Move tabs back and forth with ctrl+e and ctrl+r
+nnoremap <C-r> :tabm +1<CR>
+nnoremap <C-e> :tabm -1<CR>
