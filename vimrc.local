@@ -2,7 +2,6 @@
 let mapleader = " "
 
 source ~/dotfiles-local/vimrc.bundles.local
-source ~/dotfiles-local/vim/coc.local
 
 " Don't insert comments when inserting a new line after a comment
 autocmd BufEnter * setlocal formatoptions-=cro
@@ -391,3 +390,5 @@ nnoremap <Leader><Leader>at mp:%bd\|e#<CR>`p
 augroup ale
   autocmd!
 augroup END
+
+source ~/dotfiles-local/vim/coc.local
