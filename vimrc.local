@@ -1,8 +1,8 @@
 
 let mapleader = " "
 
-source ~/dotfiles/vimrc.bundles.local
-source ~/dotfiles/vim/coc.local
+source ~/dotfiles-local/vimrc.bundles.local
+source ~/dotfiles-local/vim/coc.local
 
 " Don't insert comments when inserting a new line after a comment
 autocmd BufEnter * setlocal formatoptions-=cro
@@ -385,5 +385,9 @@ nnoremap <Leader><Leader><Leader>l :vertical resize +1<CR>
 nnoremap <Leader><Leader>at mp:%bd\|e#<CR>`p
 
 " Move tabs back and forth with ctrl+e and ctrl+r
-nnoremap <C-r> :tabm +1<CR>
-nnoremap <C-e> :tabm -1<CR>
+"nnoremap <C-r> :tabm +1<CR>
+"nnoremap <C-e> :tabm -1<CR>
+
+augroup ale
+  autocmd!
+augroup END

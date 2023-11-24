@@ -1,5 +1,6 @@
 call plug#begin()
 
+UnPlug 'ale'
 Plug '0xStabby/chatgpt-vim'
 
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -11,6 +12,7 @@ Plug 'tommcdo/vim-exchange'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-rails'
+Plug 'tomasiser/vim-code-dark'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
