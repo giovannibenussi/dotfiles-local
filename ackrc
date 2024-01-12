@@ -1,0 +1,6 @@
+--ignore-dir=.next/
+--ignore-dir=node_modules/
+--ignore-dir=log/
+--ignore-dir=tmp/
+--ignore-dir=public/drizzle-studio-component/assets/
+--ignore-file=is:tsconfig.tsbuildinfo

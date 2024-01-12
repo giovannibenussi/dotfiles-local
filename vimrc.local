@@ -328,7 +328,7 @@ nmap <Leader>lw "xyiwo<esc>iconsole.log(""<esc>"xPla,  <esc>"xPa)<esc>
 nmap <Leader>lwi "xyiwo<esc>iconsole.log(""<esc>"xPla,  <esc>"xPa)<esc>kdd_
 
 nmap <Leader>yi gg}kyy
-nmap <Leader>pi mbgg}P`bzz
+"nmap <Leader>pi mbgg}P`bzz
 
 nnoremap <leader>tfo :NERDTreeFocus<CR>
 nnoremap <C-m> :NERDTree<CR>
@@ -392,3 +392,13 @@ augroup ale
 augroup END
 
 source ~/dotfiles-local/vim/coc.local
+
+" START easymotion/vim-easymotion
+"Plug 'easymotion/vim-easymotion'
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+" END easymotion/vim-easymotion
+
+unmap <Leader>o

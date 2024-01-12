@@ -1,6 +1,7 @@
 call plug#begin()
 
 UnPlug 'ale'
+UnPlug 'fzf'
 Plug '0xStabby/chatgpt-vim'
 
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -35,9 +36,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 "let g:ctrlp_custom_ignore = {
   "\ 'dir':  'tmp\|node_modules\|log\|.next\|dist\|\v[\/]\.(git|hg|svn)\|tmp',
 "\ }
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|node_modules$',
-  \ }
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/](tmp\|node_modules\|log\|.next\|dist\|.(git|hg|svn))$',
+"\ }
+" Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 " Don't update working path everytime it runs
 let g:ctrlp_working_path_mode = 0
 
@@ -51,7 +54,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'honza/vim-snippets'
-Plug 'grvcoelho/vim-javascript-snippets'
+"Plug 'grvcoelho/vim-javascript-snippets'
 
 " Markdown Support
 Plug 'godlygeek/tabular'
