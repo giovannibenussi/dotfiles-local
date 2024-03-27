@@ -111,3 +111,5 @@ create_if_needed_and_attach
 
 export DENO_INSTALL="/Users/giovannibenussi/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+eval "$(pyenv init --path)"
