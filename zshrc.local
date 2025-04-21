@@ -115,6 +115,7 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 alias vim="nvim"
 alias vi="nvim"
 alias oldvim="vim"
+alias l="eza --color=always --long --git"
 ZSH_THEME="catppuccin"
 CATPPUCCIN_FLAVOR="mocha"
 CATPPUCCIN_SHOW_TIME=true
