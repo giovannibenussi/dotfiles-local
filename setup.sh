@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # https://insomnia.rest/download
 # https://linear.app/download
