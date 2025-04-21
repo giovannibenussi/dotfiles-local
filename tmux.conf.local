@@ -289,7 +289,7 @@ bind -n C-Up resize-pane -U 5
 bind-key - split-window -v  -c '#{pane_current_path}'
 #bind-key \ split-window -h  -c '#{pane_current_path}'
 bind '\' split-window -h
-bind c new-window -c "#{pane_current_path}"
+# bind c new-window -c "#{pane_current_path}"
 bind-key b break-pane -d
 
 # https://www.codeography.com/2013/06/19/navigating-vim-and-tmux-splits
@@ -325,3 +325,4 @@ set -g renumber-windows on
 # start window numbers at 1 to match keyboard order with tmux window order
 set -g base-index 1
 set-window-option -g pane-base-index 1
+set -g status-right "#(whoami) #[fg=#cba6f7]%H:%M"
