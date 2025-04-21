@@ -4,8 +4,17 @@ set -e
 # https://insomnia.rest/download
 # https://linear.app/download
 # https://openai.com/chatgpt/desktop/
+# https://www.logitech.com/es-roam/mx/mx-software.html
+# https://www.notion.com/download
+# https://www.notion.com/product/mail/download
 #
 # https://cleanshot.com/
+#
+# Neovim:
+# git clone https://github.com/github/copilot.vim.git ~/.config/nvim/pack/github/start/copilot.vim
+# :Copilot setup
+#
+# Youtube Music
 
 echo "Checking for NVM..."
 
