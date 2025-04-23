@@ -7,6 +7,8 @@ set -e
 # https://www.logitech.com/es-roam/mx/mx-software.html
 # https://www.notion.com/download
 # https://www.notion.com/product/mail/download
+# https://folivora.ai/ # BetterTouchTool
+# https://github.com/MonitorControl/MonitorControl/releases
 #
 # https://cleanshot.com/
 #
