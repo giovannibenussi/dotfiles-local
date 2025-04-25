@@ -8,5 +8,4 @@ brew "ripgrep"
 brew "jesseduffield/lazygit/lazygit"
 brew "prettierd"
 brew "eza"
-
 brew "htop"
