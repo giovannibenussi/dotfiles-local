@@ -4,6 +4,7 @@
 	diffFilter = delta --color-only
 [delta]
 	navigate = true
+	pager = less -R
 [merge]
 	conflictStyle = zdiff3
 [user]
