@@ -5,6 +5,8 @@
 [delta]
 	navigate = true
 	pager = less -R
+	plus-style = "syntax #008236"
+	minus-style = "syntax #FF6467"
 [merge]
 	conflictStyle = zdiff3
 [user]
