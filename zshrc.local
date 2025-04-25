@@ -120,3 +120,6 @@ alias lt="eza --color=always --long --git --no-permissions --total-size"
 ZSH_THEME="catppuccin"
 CATPPUCCIN_FLAVOR="mocha"
 CATPPUCCIN_SHOW_TIME=true
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
