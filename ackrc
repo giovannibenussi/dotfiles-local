@@ -3,5 +3,6 @@
 --ignore-dir=log/
 --ignore-dir=tmp/
 --ignore-dir=dist/
+--ignore-dir=build/
 --ignore-dir=public/drizzle-studio-component/assets/
 --ignore-file=is:tsconfig.tsbuildinfo

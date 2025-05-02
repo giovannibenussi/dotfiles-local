@@ -326,3 +326,8 @@ set -g renumber-windows on
 set -g base-index 1
 set-window-option -g pane-base-index 1
 set -g status-right "#(whoami) #[fg=#cba6f7]%H:%M"
+
+# Swap panes with Ctrl+Shift+Arrow
+# Source: https://superuser.com/a/552493/590963
+bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
+bind-key -n C-S-Right swap-window -t +1\; select-window -t +1

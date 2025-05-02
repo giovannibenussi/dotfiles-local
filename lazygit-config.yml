@@ -3,4 +3,3 @@ git:
     pager: delta --dark --paging=never 
 gui:
   scrollHeight: 10 
-
